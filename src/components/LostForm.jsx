@@ -2,39 +2,34 @@
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg"
 import dropsite from "../images/Group 43.svg"
 import upload from "../images/upload.png"
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 //import Navigation from "./Navigation";
 
-class LostForm extends Component {
-    state;
-    constructor() {
-        super();
-        this.state = {
-            type : "Dog",
-            sex : "Male",
-            breed : "",
-            color : "",
-            height : "0-44",
-            distinctive_features : "",
-            description : "",
-            location : "",
-            phone : "",
-            email : "",
-            facebook_profile : ""
-        }
-    }
+const LostForm = () => {
 
-    clickPublish() {
-        console.log(this.state)
-    }
-    render() {
-        return(
+    const [type, setType] = useState("Dog")
+    const [sex, setSex] = useState("Male")
+    const [breed, setBreed] = useState("")
+    const [color, setColor] = useState("")
+    const [height, setHeight] = "0-44"
+    const [distinctive_features, setDistinctive_features] = useState("")
+    const [description, setDescription] = useState("")
+    const [location, setLocation] = useState("")
+    const [phone, setPhone] = useState("")
+    const [email, setEmail] = useState("")
+    const [facebook_profile, setFacebook_profile] = useState("")
+
+    const clickPublish = () => {
+        console.log("state")
+    };
+
+    return(
             <div className="Lost_form">
                 {/*<Navigation/>*/}
                 <h1>Lost your buddy? Keep calm and complete the form</h1>
                 <div className="form_main">
                     <label htmlFor="type">Type:</label>
-                    <select name="type" id="type" onChange={(e) => this.setState({type : e.target.value})}>
+                    <select name="type" id="type" onChange={(e) => setType(e.target.value)}>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
                         <option value="bird">Bird</option>
@@ -78,12 +73,11 @@ class LostForm extends Component {
                         <br/>
                         <img src={profile} alt="pfp"/>
                         <p>John Goodboi</p>
-                        <input type="button" value="Publish" onClick={()=>this.clickPublish()}/>
+                        <input type="button" value="Publish" onClick={()=>clickPublish()}/>
                     </div>
                 </div>
             </div>
         )
-    }
 }
 
 export default LostForm;
