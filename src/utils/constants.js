@@ -7,4 +7,3 @@ export const SERVICES = 'SERVICES';
 export const FAVORITES = 'FAVORITES';
 export const ADD_NEW = 'ADD_NEW';
 export const PROFILE = 'PROFILE';
-export const SIGN_IN = 'SIGN_IN';
