@@ -9,7 +9,7 @@ const Header = (props) => {
         return (
             <div className={`header ${h_color}`}>
                 PROPet logo
-                <HeaderButtons handleClickProceed={props.handleClickProceed}/>
+                <HeaderButtons/>
             </div>
         );
     };

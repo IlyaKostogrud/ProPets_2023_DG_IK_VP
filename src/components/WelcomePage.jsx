@@ -1,38 +1,33 @@
 import React, {useState} from 'react';
 import Header from "./Header";
 import LoginRegistrationStep from "./LoginRegistrationStep";
-import {useDispatch} from "react-redux";
-import {renderLogin} from "../store/renderLoginSlice";
-import {HOME} from "../utils/constants";
-import WelcomeButtons from "./WelcomeButtons";
 
-let whatToRenderNext;
+let logOrReg;
 const WelcomePage = () => {
     const [condition, setCondition] = useState(false);
-    const dispatch = useDispatch();
 
-    const handleClickProceed = (bool, display = HOME) => {
-        whatToRenderNext = display;
-        dispatch(renderLogin(bool));
-        changeCondition();
-    };
-
-    const changeCondition = () => {
-        setCondition(!condition);
+    const handleClickProceed = (bool) =>{
+        logOrReg = bool;
+        setCondition(true);
     };
 
     return (
         <div className={'welcome-page container'}>
             <div className={'row'}>
                 <div className={'col-12'}>
-                    <Header h_color={'green'} handleClickProceed={handleClickProceed}/>
+                    <Header h_color={'green'}/>
                 </div>
             </div>
             <div className={'row'}>
-                <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
-                <WelcomeButtons handleClickProceed={handleClickProceed}/>
+                <div className={'col-1'}>
+                    <button onClick={() => handleClickProceed(true)}>I lost my pet!</button>
+                    <button onClick={() => handleClickProceed(true)}>I found a pet!</button>
+                    <button onClick={() => handleClickProceed(false)}>JOIN</button>
+                </div>
             </div>
-            {condition && <LoginRegistrationStep changeCondition={changeCondition} whatToRenderNext={whatToRenderNext}/>}
+
+
+            {condition && <LoginRegistrationStep logOrReg={logOrReg}/>}
         </div>
     );
 };
