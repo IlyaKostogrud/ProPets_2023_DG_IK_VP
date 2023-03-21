@@ -3,7 +3,8 @@ import Header from "./Header";
 import LoginRegistrationStep from "./LoginRegistrationStep";
 import {useDispatch} from "react-redux";
 import {renderLogin} from "../store/renderLoginSlice";
-import {HOME, LOST_FORM} from "../utils/constants";
+import {HOME} from "../utils/constants";
+import WelcomeButtons from "./WelcomeButtons";
 
 let whatToRenderNext;
 const WelcomePage = () => {
@@ -28,11 +29,8 @@ const WelcomePage = () => {
                 </div>
             </div>
             <div className={'row'}>
-                <div className={'col-1'}>
-                    <button onClick={()=>handleClickProceed(false, LOST_FORM)}>I lost my pet!</button>
-                    <button onClick={()=>handleClickProceed(false)}>I found a pet!</button>
-                    <button onClick={()=>handleClickProceed(false)}>JOIN</button>
-                </div>
+                <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
+                <WelcomeButtons handleClickProceed={handleClickProceed}/>
             </div>
             {condition && <LoginRegistrationStep changeCondition={changeCondition} whatToRenderNext={whatToRenderNext}/>}
         </div>
