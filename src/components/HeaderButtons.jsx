@@ -1,5 +1,16 @@
 import React from 'react';
-import {ADD_NEW, FAVORITES, FOUND, HOME, LOST, LOST_FORM, SERVICES} from "../utils/constants";
+import {
+    ADD_NEW,
+    FAVORITES,
+    FOSTERING,
+    FOUND,
+    HOME,
+    HOTELS,
+    LOST,
+    LOST_FORM,
+    SERVICES, VET_HELP,
+    WALKING
+} from "../utils/constants";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -19,6 +30,10 @@ const HeaderButtons = ({handleClickProceed}) => {
         case HOME:
         case SERVICES:
         case FAVORITES:
+        case HOTELS:
+        case WALKING:
+        case FOSTERING:
+        case VET_HELP:
             return (
                 <button onClick={() => dispatch(changeDisplay(ADD_NEW))}>+ Add new</button>
             );
