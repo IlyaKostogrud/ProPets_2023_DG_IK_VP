@@ -40,10 +40,10 @@ const HeaderButtons = ({handleClickProceed}) => {
         case LOST:
         case FOUND:
             return (
-                <>
+                <div>
                     <button onClick={() => dispatch(changeDisplay(LOST_FORM))}>I lost my pet</button>
                     <button>I found a pet</button>
-                </>
+                </div>
             );
         default:
             return;
