@@ -30,12 +30,13 @@ const WelcomePage = () => {
                 </div>
             </div>
             <div className={'row'}>
-                <div className={'col-8'}>
+                <div className={'col welcome-page-menu'}>
                     <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
                     <WelcomeButtons handleClickProceed={handleClickProceed}/>
                 </div>
-                <img className={'col-4 Welcome_Puppy'} src={Welcome_Puppy} alt="Welcome_Puppy"/>
-
+                <div className={'col'}>
+                    <img className={'Welcome_Puppy'} src={Welcome_Puppy} alt="Welcome_Puppy"/>
+                </div>
             </div>
             {condition && <LoginRegistrationStep changeCondition={changeCondition} whatToRenderNext={whatToRenderNext}/>}
         </div>

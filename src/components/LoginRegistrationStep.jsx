@@ -8,7 +8,7 @@ const LoginRegistrationStep = (props) => {
     const dispatch = useDispatch();
 
     return (
-        <div>
+        <div className={'LoginRegistrationStep-form'}>
             <button disabled={!login} onClick={() => dispatch(renderLogin(false))}>Sign up</button>
             <button disabled={login} onClick={() => dispatch(renderLogin(true))} >Sign in</button>
             <LoginRegistrationForm {...props}/>

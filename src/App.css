@@ -2,22 +2,50 @@
   text-align: center;
 }
 
-#root{
-  display: flex;
-  justify-content: center;
-}
+/*#root{*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 70px 15px 70px;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+button{
+  border-radius: 15px;
 }
 
 .pawfessional{
   color: #84B6A3;
 }
 
+.welcome-page-menu{
+  display: flex;
+  flex-direction: column;
+}
+.LoginRegistrationStep-form{
+  width: 500px;
+}
+
+.LoginRegistrationForm-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: column;
+}
+
 .green{
   background-color: #669885;
+}
+
+.navigation{
+  display: flex;
+  flex-direction: column;
 }

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {LOST_FORM} from "../utils/constants";
+import button from "bootstrap/js/src/button";
 
 const WelcomeButtons = ({handleClickProceed}) => {
     const [lost, setLost] = useState(false);
@@ -10,7 +11,7 @@ const WelcomeButtons = ({handleClickProceed}) => {
     }
 
     return (
-        <div>
+        <div className={'button-container'}>
             <button onMouseEnter={() => handleMouseEnterLeave(lost, setLost)}
                     onMouseLeave={() => handleMouseEnterLeave(lost, setLost)}
                     onClick={() => handleClickProceed(false, LOST_FORM)}>{
@@ -28,7 +29,6 @@ const WelcomeButtons = ({handleClickProceed}) => {
                 <button onClick={() => handleClickProceed(false)}>JOIN</button>
                 the pawsome community!
             </div>
-
         </div>
     );
 };
