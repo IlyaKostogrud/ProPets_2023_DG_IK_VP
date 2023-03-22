@@ -13,7 +13,7 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
     return (
         <div>
-            <form>
+            <form className={'LoginRegistrationForm-fields'}>
                 {login || <input type={'text'} placeholder={'Helen Johnson'}/>}
                 <input type={'email'} placeholder={'helenjohnson@gmail.com'}/>
                 <input type={'password'}/>
