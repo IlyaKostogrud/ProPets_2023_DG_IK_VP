@@ -10,7 +10,7 @@ const WelcomeButtons = ({handleClickProceed}) => {
     }
 
     return (
-        <div className={'col-1'}>
+        <div>
             <button onMouseEnter={() => handleMouseEnterLeave(lost, setLost)}
                     onMouseLeave={() => handleMouseEnterLeave(lost, setLost)}
                     onClick={() => handleClickProceed(false, LOST_FORM)}>{
@@ -23,7 +23,12 @@ const WelcomeButtons = ({handleClickProceed}) => {
                 found ? 'What to do?' : 'I found a pet!'
             }
             </button>
-            <button onClick={() => handleClickProceed(false)}>JOIN</button>
+            <div>
+                I'm okay, just want to
+                <button onClick={() => handleClickProceed(false)}>JOIN</button>
+                the pawsome community!
+            </div>
+
         </div>
     );
 };

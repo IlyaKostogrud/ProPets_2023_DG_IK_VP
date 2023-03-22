@@ -5,6 +5,7 @@ import {useDispatch} from "react-redux";
 import {renderLogin} from "../store/renderLoginSlice";
 import {HOME} from "../utils/constants";
 import WelcomeButtons from "./WelcomeButtons";
+import Welcome_Puppy from "../images/Image 2.png";
 
 let whatToRenderNext;
 const WelcomePage = () => {
@@ -29,8 +30,12 @@ const WelcomePage = () => {
                 </div>
             </div>
             <div className={'row'}>
-                <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
-                <WelcomeButtons handleClickProceed={handleClickProceed}/>
+                <div className={'col-8'}>
+                    <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
+                    <WelcomeButtons handleClickProceed={handleClickProceed}/>
+                </div>
+                <img className={'col-4 Welcome_Puppy'} src={Welcome_Puppy} alt="Welcome_Puppy"/>
+
             </div>
             {condition && <LoginRegistrationStep changeCondition={changeCondition} whatToRenderNext={whatToRenderNext}/>}
         </div>
