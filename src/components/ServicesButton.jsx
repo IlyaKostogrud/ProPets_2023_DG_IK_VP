@@ -1,28 +1,31 @@
 import React, {useState} from 'react';
-import {isDisplayArray} from "../utils/constants";
-import {useSelector} from "react-redux";
-import ServicesButtonsGroup from "./ServicesButtonsGroup";
+import {FOSTERING, HOTELS, isDisplayArray, VET_HELP, WALKING} from "../utils/constants";
+import {useDispatch, useSelector} from "react-redux";
+import {changeDisplay} from "../store/mainDisplaySlice";
 
 const ServicesButton = () => {
     const {display} = useSelector(state => state.mainDisplay);
+    const dispatch = useDispatch();
+
     const [buttonsGroup, setButtonsGroup] = useState(false);
 
-    const buttons = () =>{
+    const displayButtons = () =>{
         return isDisabled() || buttonsGroup;
     };
 
     const isDisabled = () =>{
-      for (let i = 0;i<isDisplayArray.length;i++){
-          if (display === isDisplayArray[i])
-              return true;
-      }
-        return false;
+        return isDisplayArray.includes(display);
     };
 
     return (
         <>
             <button disabled={isDisabled()} onClick={() => setButtonsGroup(!buttonsGroup)}>Services</button>
-            {buttons() && <ServicesButtonsGroup/>}
+            {displayButtons() && <div className={'services-buttons-group'}>
+                <button disabled={display === HOTELS} onClick={() => dispatch(changeDisplay(HOTELS))}>Hotels</button>
+                <button disabled={display === WALKING} onClick={() => dispatch(changeDisplay(WALKING))}>Walking</button>
+                <button disabled={display === FOSTERING} onClick={() => dispatch(changeDisplay(FOSTERING))}>Fostering</button>
+                <button disabled={display === VET_HELP} onClick={() => dispatch(changeDisplay(VET_HELP))}>VetHelp</button>
+            </div>}
         </>
     );
 };

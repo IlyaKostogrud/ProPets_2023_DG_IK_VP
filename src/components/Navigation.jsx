@@ -14,7 +14,6 @@ const Navigation = () => {
             <button disabled={display === HOME} onClick={() => dispatch(changeDisplay(HOME))}>Home</button>
             <button disabled={display === LOST} onClick={() => dispatch(changeDisplay(LOST))}>Lost</button>
             <button disabled={display === FOUND} onClick={() => dispatch(changeDisplay(FOUND))}>Found</button>
-            {/*<button disabled={display === SERVICES} onClick={() => dispatch(changeDisplay(SERVICES))}>Services</button>*/}
             <ServicesButton/>
             <button disabled={display === FAVORITES} onClick={() => dispatch(changeDisplay(FAVORITES))}>Favorites</button>
             <ProfileInfo/>
