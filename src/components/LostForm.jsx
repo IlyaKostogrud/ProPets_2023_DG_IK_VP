@@ -2,6 +2,7 @@ import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg"
 import dropsite from "../images/Group 43.svg"
 import upload from "../images/upload.png"
 import React, {useState} from "react";
+import {drop, allowDrop} from "../utils/drag&drop"
 
 const LostForm = () => {
 
@@ -13,6 +14,7 @@ const LostForm = () => {
     const [distinctive_features, setDistinctive_features] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
+    const [photo, setPhoto] = useState("")
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [facebook_profile, setFacebook_profile] = useState("")
@@ -55,9 +57,9 @@ const LostForm = () => {
                     <label htmlFor="location">Location:</label>
                     <textarea id="location" placeholder="Florentin street, Tel Aviv" onChange={(e) => setLocation(e.target.value)}/>
                     <br/>
-                    <img src={dropsite} alt="default_photo"/>
+                    <img src={dropsite} alt="default_photo" onDrop={drop} onDragOver={allowDrop}/>
                     <div className="Drag&drop">
-                        <img src={upload} alt="upload"/>
+                        <img src={upload} alt="upload" />
                         <p>Drag and drop photos or</p>
                         <input type="file" name="Browse"/>
                         <textarea id="upload_list"/>

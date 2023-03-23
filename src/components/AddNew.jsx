@@ -2,6 +2,7 @@ import React from 'react';
 import {lorem_ipsum} from "../utils/constants";
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import upload from "../images/upload.png";
+import {drop, allowDrop} from "../utils/drag&drop";
 
 const AddNew = () => {
     const clickPublish = () => {
@@ -21,10 +22,10 @@ const AddNew = () => {
                 <p>up to 4 images</p>
             </label>
             <div id="photos">
-                <img src={profile} alt="pic1"/>
-                <img src={profile} alt="pic2"/>
-                <img src={profile} alt="pic3"/>
-                <img src={profile} alt="pic4"/>
+                <img src={profile} alt="pic1" onDrop={drop} onDragOver={allowDrop}/>
+                <img src={profile} alt="pic2" onDrop={drop} onDragOver={allowDrop}/>
+                <img src={profile} alt="pic3" onDrop={drop} onDragOver={allowDrop}/>
+                <img src={profile} alt="pic4" onDrop={drop} onDragOver={allowDrop}/>
             </div>
             <div className="Drag&drop">
                 <img src={upload} alt="upload"/>
