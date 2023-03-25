@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
-import RegistrationForm from "./RegistrationForm";
-import LoginForm from "./LoginForm";
+import React from 'react';
+import LoginRegistrationForm from "./LoginRegistrationForm";
+import {useDispatch, useSelector} from "react-redux";
+import {renderLogin} from "../store/renderLoginSlice";
 
-const LoginRegistrationStep = ({logOrReg}) => {
-    const [registration, setRegistration] = useState(logOrReg)
+const LoginRegistrationStep = (props) => {
+    const {login} = useSelector(state => state.renderLoginR);
+    const dispatch = useDispatch();
 
     return (
-        <div>
-            <button disabled={registration}>Sign up</button>
-            <button disabled={!registration}>Sign in</button>
-            {registration ? <RegistrationForm/> : <LoginForm/>}
+        <div className={'LoginRegistrationStep-form'}>
+            <button disabled={!login} onClick={() => dispatch(renderLogin(false))}>Sign up</button>
+            <button disabled={login} onClick={() => dispatch(renderLogin(true))} >Sign in</button>
+            <LoginRegistrationForm {...props}/>
         </div>
     );
 };

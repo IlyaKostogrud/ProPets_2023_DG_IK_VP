@@ -12,8 +12,8 @@ const Main = () => {
                     <Header/>
                 </div>
             </div>
-            <div className={'row'}>
-                <div className={'col-1 green'}>
+            <div className={'row main-body'}>
+                <div className={'col-2 green'}>
                     <Navigation/>
                 </div>
                 <div className={'col-8'}>
