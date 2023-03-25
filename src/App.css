@@ -23,16 +23,67 @@ button{
     color: #84B6A3;
 }
 
-.welcome-page-menu {
+.welcome-page-wrap-menu {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.LoginRegistrationStep-form {
-    width: 500px;
+.welcome-page-wrap-img1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
-.LoginRegistrationForm-fields {
+.welcome-page-img1{
+    height: 90%;
+}
+
+.welcome-page-greeting-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #669885;
+}
+
+.welcome-page-services-offered-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-page-wrap-img2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.welcome-page-img2{
+    height: 90%;
+}
+
+.welcome-page-coming-soon-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF6F61;
+}
+
+.welcome-page-contacts-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #669885;
+}
+
+.loginRegistrationStep-form {
+    width: 50vw;
+}
+
+.loginRegistrationForm-fields {
     display: flex;
     flex-direction: column;
 }
