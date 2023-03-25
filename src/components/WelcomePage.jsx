@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Header from "./Header";
-import LoginRegistrationStep from "./LoginRegistrationStep";
+import LoginRegistrationStep from "./LoginRegistrationStep/LoginRegistrationStep";
 import {useDispatch} from "react-redux";
 import {renderLogin} from "../store/renderLoginSlice";
 import {HOME} from "../utils/constants";
