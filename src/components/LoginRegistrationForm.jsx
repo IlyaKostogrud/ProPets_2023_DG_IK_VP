@@ -13,11 +13,23 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
     return (
         <div>
-            <form className={'LoginRegistrationForm-fields'}>
-                {login || <input type={'text'} placeholder={'Helen Johnson'}/>}
-                <input type={'email'} placeholder={'helenjohnson@gmail.com'}/>
-                <input type={'password'}/>
-                {login || <input type={'password'}/>}
+            <form className={'loginRegistrationForm-fields'}>
+                {login || <div>
+                    <label htmlFor="login-name">Name:</label>
+                    <input type={'text'} id="login-name" placeholder={'Helen Johnson'}/>
+                </div>}
+                <div>
+                    <label htmlFor="login-email">Email:</label>
+                    <input type={'email'} id="login-email" placeholder={'helenjohnson@gmail.com'}/>
+                </div>
+                <div>
+                    <label htmlFor="login-password">Password:</label>
+                    <input type={'password'} id="login-password" placeholder={'********'}/>
+                </div>
+                {login || <div>
+                    <label htmlFor="login-password-check">Password:</label>
+                    <input type={'password'} id="login-password-check" placeholder={'********'}/>
+                </div>}
             </form>
             <button onClick={() => changeCondition()}>Cancel</button>
             <button onClick={handleClickSignIn}>Submit</button>
