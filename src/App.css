@@ -1,5 +1,5 @@
-.App{
-  text-align: center;
+.App {
+    text-align: center;
 }
 
 /*#root{*/
@@ -7,45 +7,59 @@
 /*  justify-content: center;*/
 /*}*/
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 70px 15px 70px;
-  box-shadow: 0px 3px 6px #00000029;
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 70px 15px 70px;
+    box-shadow: 0px 3px 6px #00000029;
 }
 
 button{
-  border-radius: 15px;
+    border-radius: 15px;
 }
 
-.pawfessional{
-  color: #84B6A3;
+.pawfessional {
+    color: #84B6A3;
 }
 
-.welcome-page-menu{
-  display: flex;
-  flex-direction: column;
-}
-.LoginRegistrationStep-form{
-  width: 500px;
+.welcome-page-menu {
+    display: flex;
+    flex-direction: column;
 }
 
-.LoginRegistrationForm-fields{
-  display: flex;
-  flex-direction: column;
+.LoginRegistrationStep-form {
+    width: 500px;
 }
 
-.button-container{
-  display: flex;
-  flex-direction: column;
+.LoginRegistrationForm-fields {
+    display: flex;
+    flex-direction: column;
 }
 
-.green{
-  background-color: #669885;
+.button-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.navigation{
-  display: flex;
-  flex-direction: column;
+.green {
+    background-color: #669885;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-body{
+    height: 90vh;
+}
+
+.Lost_form .form_main {
+    display: flex;
+    flex-direction: column;
+}
+
+*.Lost_form .form_main{
+    width: fit-content;
 }

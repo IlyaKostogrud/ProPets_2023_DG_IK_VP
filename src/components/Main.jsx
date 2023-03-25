@@ -12,7 +12,7 @@ const Main = () => {
                     <Header/>
                 </div>
             </div>
-            <div className={'row'}>
+            <div className={'row main-body'}>
                 <div className={'col-2 green'}>
                     <Navigation/>
                 </div>
