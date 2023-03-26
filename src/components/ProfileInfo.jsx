@@ -3,12 +3,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {PROFILE} from "../utils/constants";
 import {changeState} from "../store/welcomeMainSlice";
+import {logout} from "../firebase/auth-service";
 
 const ProfileInfo = () => {
     const {display} = useSelector(state => state.mainDisplay);
     const dispatch = useDispatch();
 
     const handleOnClickLogout = () =>{
+        logout();
         dispatch(changeDisplay(''))
         dispatch(changeState(true));
     }
