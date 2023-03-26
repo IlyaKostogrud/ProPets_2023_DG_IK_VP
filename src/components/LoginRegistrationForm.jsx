@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {changeState} from "../store/welcomeMainSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {loginFBase, registration} from "../firebase/auth-service";
+// ******************************* DO NOT DELETE *******************************
+// import {loginFBase, registration} from "../firebase/auth-service";
+// ******************************* DO NOT DELETE *******************************
 
 const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
     const {login} = useSelector(state => state.renderLoginR);
@@ -13,13 +15,15 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
     const [error, setError] = useState('');
 
-    const handleClickSubmit = async() => {
-        setError('');
-        let response = login ? await loginFBase(email, password) : await registration(email, password);
-        if (response.hasOwnProperty('message')){
-            setError(response.message);
-            return;
-        }
+    const handleClickSubmit = async () => {
+        // ******************************* DO NOT DELETE *******************************
+        // setError('');
+        // const response = login ? await loginFBase(email, password) : await registration(email, password);
+        // if (response.hasOwnProperty('message')){
+        //     setError(response.message);
+        //     return;
+        // }
+        // ******************************* DO NOT DELETE *******************************
         dispatch(changeDisplay(whatToRenderNext));
         dispatch(changeState(false));
     };

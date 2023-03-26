@@ -10,5 +10,5 @@ export function loginFBase(email,password){
 }
 
 export function logout(){
-    signOut(auth).catch(error => error);
+    signOut(auth).catch(error => console.log(error));
 }

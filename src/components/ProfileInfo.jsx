@@ -9,15 +9,16 @@ const ProfileInfo = () => {
     const {display} = useSelector(state => state.mainDisplay);
     const dispatch = useDispatch();
 
-    const handleOnClickLogout = () =>{
-        logout();
+    const handleOnClickLogout = async () => {
+        await logout();
         dispatch(changeDisplay(''))
         dispatch(changeState(true));
     }
 
     return (
         <div className={'profile-info'}>
-            <button disabled={display === PROFILE} onClick={() => dispatch(changeDisplay(PROFILE))}>Profile name</button>
+            <button disabled={display === PROFILE} onClick={() => dispatch(changeDisplay(PROFILE))}>Profile name
+            </button>
             <button onClick={handleOnClickLogout}>Logout</button>
         </div>
     );
