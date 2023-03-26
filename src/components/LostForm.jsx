@@ -3,9 +3,11 @@ import dropsite from "../images/Group 43.svg"
 import upload from "../images/upload.png"
 import React, {useState} from "react";
 import {drop, allowDrop} from "../utils/drag&drop"
+import {PREVIEW} from "../utils/constants"
+import {changeDisplay} from "../store/mainDisplaySlice";
+import {useDispatch} from "react-redux";
 
 const LostForm = () => {
-
     const [type, setType] = useState("dog")
     const [sex, setSex] = useState("male")
     const [breed, setBreed] = useState("")
@@ -14,14 +16,12 @@ const LostForm = () => {
     const [distinctive_features, setDistinctive_features] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
-    const [photo, setPhoto] = useState("")
+    const [photo, setPhoto] = useState([])
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [facebook_profile, setFacebook_profile] = useState("")
 
-    const clickPublish = () => {
-        console.log("state")
-    };
+    const dispatch = useDispatch();
 
     return(
             <div className="Lost_form">
@@ -57,9 +57,14 @@ const LostForm = () => {
                     <label htmlFor="location">Location:</label>
                     <textarea id="location" placeholder="Florentin street, Tel Aviv" onChange={(e) => setLocation(e.target.value)}/>
                     <br/>
-                    <img src={dropsite} alt="default_photo" onDrop={drop} onDragOver={allowDrop}/>
+                    <img src={dropsite} alt="default_photo" onDrop={drop} onDragOver={allowDrop} onChange={
+                        (e) => {
+                            setPhoto(e.target.value)
+                            /*document.getElementById("upload_list").value += this.name*/
+                        }
+                    }/>
                     <div className="Drag&drop">
-                        <img src={upload} alt="upload" />
+                        <img src={upload} alt="upload"/>
                         <p>Drag and drop photos or</p>
                         <input type="file" name="Browse"/>
                         <textarea id="upload_list"/>
@@ -72,7 +77,10 @@ const LostForm = () => {
                         <br/>
                         <img src={profile} alt="pfp"/>
                         <p>John Goodboi</p>
-                        <input type="button" value="Publish" onClick={()=>clickPublish()}/>
+                        <input type="button" value="Publish" onClick={() => {
+                            dispatch(changeDisplay(PREVIEW))
+                        }
+                        }/>
                     </div>
                 </div>
             </div>

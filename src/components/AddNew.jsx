@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {lorem_ipsum} from "../utils/constants";
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import upload from "../images/upload.png";
 import {drop, allowDrop} from "../utils/drag&drop";
 
 const AddNew = () => {
+    const [text, setText] = useState("")
+    const [photos, setPhotos] = useState([])
     const clickPublish = () => {
         console.log("state")
     };
@@ -15,7 +17,7 @@ const AddNew = () => {
                 <p>Text:</p>
                 <p>up to 1500 char</p>
             </label>
-            <textarea id="newPost" placeholder={lorem_ipsum}/>
+            <textarea id="newPost" placeholder={lorem_ipsum} onChange={(e) => setText(e.target.value)}/>
             <br/>
             <label htmlFor="photos">
                 <p>Photos:</p>
