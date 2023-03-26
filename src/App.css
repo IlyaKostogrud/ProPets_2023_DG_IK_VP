@@ -79,10 +79,6 @@ button{
     background-color: #669885;
 }
 
-.loginRegistrationStep-form {
-    width: 50vw;
-}
-
 .loginRegistrationForm-fields {
     display: flex;
     flex-direction: column;

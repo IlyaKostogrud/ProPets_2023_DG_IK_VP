@@ -9,7 +9,8 @@ import {
     LOST_FORM,
     PROFILE,
     VET_HELP,
-    WALKING
+    WALKING,
+    PREVIEW
 } from "../utils/constants";
 import LostFeed from "./LostFeed";
 import Favorites from "./Favorites";
@@ -23,6 +24,7 @@ import Hotels from "./Hotels";
 import Walking from "./Walking";
 import Fostering from "./Fostering";
 import VetHelp from "./VetHelp";
+import Preview from "./Preview";
 
 const Feeds = () => {
     const {display} = useSelector(state => state.mainDisplay);
@@ -48,6 +50,8 @@ const Feeds = () => {
             return <AddNew/>
         case PROFILE:
             return <Profile/>
+        case PREVIEW:
+            return <Preview/>
         default:
             return <Home/>
     }
