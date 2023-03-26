@@ -1,12 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {changeState} from "../store/welcomeMainSlice";
 import {useDispatch, useSelector} from "react-redux";
+// ******************************* DO NOT DELETE *******************************
+// import {loginFBase, registration} from "../firebase/auth-service";
+// ******************************* DO NOT DELETE *******************************
 
 const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
     const {login} = useSelector(state => state.renderLoginR);
     const dispatch = useDispatch();
-    const handleClickSignIn = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [error, setError] = useState('');
+
+    const handleClickSubmit = async () => {
+        // ******************************* DO NOT DELETE *******************************
+        // setError('');
+        // const response = login ? await loginFBase(email, password) : await registration(email, password);
+        // if (response.hasOwnProperty('message')){
+        //     setError(response.message);
+        //     return;
+        // }
+        // ******************************* DO NOT DELETE *******************************
         dispatch(changeDisplay(whatToRenderNext));
         dispatch(changeState(false));
     };
@@ -20,19 +37,24 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
                 </div>}
                 <div>
                     <label htmlFor="login-email">Email:</label>
-                    <input type={'email'} id="login-email" placeholder={'helenjohnson@gmail.com'}/>
+                    <input type={'email'} id="login-email" placeholder={'helenjohnson@gmail.com'}
+                           value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
                 <div>
                     <label htmlFor="login-password">Password:</label>
-                    <input type={'password'} id="login-password" placeholder={'********'}/>
+                    <input type={'password'} id="login-password" placeholder={'********'}
+                           value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 {login || <div>
                     <label htmlFor="login-password-check">Password:</label>
                     <input type={'password'} id="login-password-check" placeholder={'********'}/>
                 </div>}
+                {error && <div>
+                    <p className={'error-p'}>{`${error}`}</p>
+                </div>}
             </form>
             <button onClick={() => changeCondition()}>Cancel</button>
-            <button onClick={handleClickSignIn}>Submit</button>
+            <button onClick={handleClickSubmit}>Submit</button>
         </div>
     );
 };
