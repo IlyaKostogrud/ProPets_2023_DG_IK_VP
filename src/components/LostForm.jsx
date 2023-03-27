@@ -57,7 +57,7 @@ const LostForm = () => {
                     <label htmlFor="location">Location:</label>
                     <textarea id="location" placeholder="Florentin street, Tel Aviv" onChange={(e) => setLocation(e.target.value)}/>
                     <br/>
-                    <img src={dropsite} alt="default_photo" onDrop={drop} onDragOver={allowDrop} onChange={
+                    <img src={dropsite} id="pic" alt="default_photo" onDrop={() => drop()} onDragOver={() => allowDrop()} onChange={
                         (e) => {
                             setPhoto(e.target.value)
                             /*document.getElementById("upload_list").value += this.name*/
@@ -66,7 +66,13 @@ const LostForm = () => {
                     <div className="Drag&drop">
                         <img src={upload} alt="upload"/>
                         <p>Drag and drop photos or</p>
-                        <input type="file" name="Browse"/>
+                        <input type="file" name="Browse" id="file" onClick={
+                            () => {
+                                let old_pic = document.getElementById("pic")
+                                let new_pic = document.getElementById("file")
+                                let text = old_pic.value.replace("C: \\fakepath\\", new_pic.value)
+                            }
+                        }/>
                         <textarea id="upload_list"/>
                     </div>
                     <div className="Contacts">

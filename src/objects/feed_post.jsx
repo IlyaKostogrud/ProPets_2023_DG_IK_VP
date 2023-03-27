@@ -1,26 +1,30 @@
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import React from "react";
 
-const feed_post = (state) => {
-    this.date = Date
-    this.text = state.text
-    this.photos = state.photos
-    return(
-        <div className="feed_post">
-            <img src={state.photo} alt="post_photo"/>
-            <h1>{state.type} {state.breed}</h1>
-            <p>Color:{state.color}</p>
-            <p>Sex:{state.sex}</p>
-            <p>Height:{state.height}</p>
-            <p>Distinctive_features:{state.distinctive_features}</p>
-            <p>Description:{state.description}</p>
-            <hr/>
-            <p>{state.location}</p>
-            <div className="post_footer">
-                <img src={profile} alt="pfp"/>
-                <p>John Goodboi</p>
-                <p>{Date}</p>
+class Feed_post {
+    constructor(state) {
+        this.date = Date()
+        this.text = state.text
+        this.photos = state.photos
+        this.is_service = state.is_service
+        this.favourite = false
+        this.name = state.name
+    }
+    publish(){
+        return(
+            <div className="feed_post">
+                <div className="post_header">
+                    <img src={profile} alt="pfp"/>
+                    <p>{this.name}</p>
+                    <p>{this.date}</p>
+                </div>
+                <img src={this.photos} alt="post_photo"/>
+                <p>{this.text}</p>
+                <hr/>
+                <p>insert_star</p>
             </div>
-        </div>
-    )
+        )
+    }
 }
+
+export default Feed_post

@@ -3,12 +3,15 @@ import {lorem_ipsum} from "../utils/constants";
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import upload from "../images/upload.png";
 import {drop, allowDrop} from "../utils/drag&drop";
+import feed_post from "../objects/feed_post";
 
 const AddNew = () => {
     const [text, setText] = useState("")
     const [photos, setPhotos] = useState([])
     const clickPublish = () => {
-        console.log("state")
+        const post = new feed_post(this.state)
+        console.log(post)
+        post.publish()
     };
     return (
         <div className="addNew">
@@ -24,15 +27,20 @@ const AddNew = () => {
                 <p>up to 4 images</p>
             </label>
             <div id="photos">
-                <img src={profile} alt="pic1" onDrop={drop} onDragOver={allowDrop}/>
-                <img src={profile} alt="pic2" onDrop={drop} onDragOver={allowDrop}/>
-                <img src={profile} alt="pic3" onDrop={drop} onDragOver={allowDrop}/>
-                <img src={profile} alt="pic4" onDrop={drop} onDragOver={allowDrop}/>
+                <img src={profile} id="pic1" alt="pic1" onDrop={() => drop()} onDragOver={() => allowDrop()}/>
+                <img src={profile} id="pic2" alt="pic2" onDrop={() => drop()} onDragOver={() => allowDrop()}/>
+                <img src={profile} id="pic3" alt="pic3" onDrop={() => drop()} onDragOver={() => allowDrop()}/>
+                <img src={profile} id="pic4" alt="pic4" onDrop={() => drop()} onDragOver={() => allowDrop()}/>
             </div>
             <div className="Drag&drop">
                 <img src={upload} alt="upload"/>
                 <p>Drag and drop photos or</p>
-                <input type="file" name="Browse"/>
+                <input type="file" name="Browse" onClick={
+                    () => {
+                        let pic1 = document.getElementById("pic1")
+                        let text = pic1.value.replace("C: \\fakepath\\", "")
+                    }
+                }/>
                 <textarea id="upload_list"/>
             </div>
             <br/>
