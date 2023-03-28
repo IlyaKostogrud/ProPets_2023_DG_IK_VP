@@ -12,8 +12,9 @@ const Preview = (state) => {
         if(document.getElementById("fb").checked === true){
             console.log("Sent to facebook")
         }
-        let post = new Lost_post(state)
+        let post = Lost_post(state)
         console.log(post)
+        post.publish()
         dispatch(changeDisplay(LOST))
 
     }
