@@ -110,3 +110,7 @@ button{
 *.Lost_form .form_main{
     width: fit-content;
 }
+
+.post-home{
+    box-shadow: 0px 3px 6px #00000029;
+}
