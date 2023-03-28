@@ -9,6 +9,8 @@ import {useDispatch} from "react-redux";
 import {createRoot} from "react-dom/client";
 import Lost_post from "../objects/lost_post";
 import Feed_post from "../objects/feed_post";
+import {render} from "react-dom";
+import root from "react-dom";
 
 const AddNew = () => {
     const [text, setText] = useState("")
@@ -17,7 +19,11 @@ const AddNew = () => {
     const clickPublish = () => {
         const post = Feed_post({text, photos})
         console.log(post)
+        root.render(post)
         dispatch(changeDisplay(HOME))
+        /*return (
+            document.getElementById("e")
+        )*/
         //createRoot(document.getElementById({date + " " + name}))
     };
     return (

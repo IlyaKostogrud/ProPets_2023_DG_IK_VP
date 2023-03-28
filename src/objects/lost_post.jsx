@@ -12,7 +12,7 @@ const Lost_post = (state) => {
     let location = state.location
     let photo = state.photo
     let profile = state.profile
-    let date = Date()
+    let date = new Date()
     let id = state.id
     let name = state.name
 

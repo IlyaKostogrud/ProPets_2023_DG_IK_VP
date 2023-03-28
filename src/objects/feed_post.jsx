@@ -1,17 +1,17 @@
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import React from "react";
 
-const Feed_post = (state) => {
+const Feed_post = (/*state*/) => {
 
-    let date = Date()
-    let text = state.text
-    let photos = state.photos
+    let date = new Date()
+    let text = "!!!!"//state.text
+    let photos = [""]//state.photos
     //let is_service = state.is_service
     let favourite = false
-    let name = state.name
+    let name = ""//state.name
 
     return(
-        <div className="feed_post" id={date + " " + name}>
+        <div className="feed_post" id="e">
             <div className="post_header">
                 <img src={profile} alt="pfp"/>
                 <p>{name}</p>
