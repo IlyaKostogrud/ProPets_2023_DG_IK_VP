@@ -9,6 +9,8 @@ import WelcomePageImg1 from "../images/welcome-page-img1.png";
 import WelcomePageImg2 from "../images/welcome-page-img2.png";
 import HeartImg from "../images/heart.png";
 import ProPetsLogoWhite from "../images/ProPetsLogoWhite.svg"
+import {changeDisplay} from "../store/mainDisplaySlice";
+import {changeState} from "../store/welcomeMainSlice";
 
 let whatToRenderNext;
 const WelcomePage = () => {
@@ -16,9 +18,15 @@ const WelcomePage = () => {
     const dispatch = useDispatch();
 
     const handleClickProceed = (bool, display = HOME) => {
-        whatToRenderNext = display;
-        dispatch(renderLogin(bool));
-        changeCondition();
+        const temp = sessionStorage.getItem('uid');
+        if(!temp){
+            whatToRenderNext = display;
+            dispatch(renderLogin(bool));
+            changeCondition();
+        }else{
+            dispatch(changeDisplay(display));
+            dispatch(changeState(false));
+        }
     };
 
     const changeCondition = () => {
