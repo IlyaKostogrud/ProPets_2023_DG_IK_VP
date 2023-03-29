@@ -13,4 +13,7 @@ export const FOSTERING = 'FOSTERING';
 export const VET_HELP = 'VET_HELP';
 export const isDisplayArray = [HOTELS, WALKING, FOSTERING, VET_HELP];
 export const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias deserunt, dolorem dolores earum facere illum maiores minus mollitia nisi, praesentium vel veniam? Esse, itaque magni! Expedita itaque quam qui rerum!"
+export const path_feedLF = 'feedLF';
+export const id_mainFeed = 'mainFeed';
+export const field_feed_array = 'feed_array';
 

@@ -31,7 +31,6 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
     };
 
     const isResponseWithError = (response) => {
-        console.log(response);
         if (response === undefined || response.hasOwnProperty('message')) {
             setLoading(false);
             login ? setError(response.message) : setError('Registration issues');
