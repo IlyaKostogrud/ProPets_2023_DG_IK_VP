@@ -22,9 +22,13 @@ export const getInfo = async (db_path, db_id) => {
     return temp.data();
 }
 
-export const addPost = async (new_post) => {
-    const ref = doc(db, 'feedLF', 'mainFeed');
-    await updateDoc(ref, {feed_array: arrayUnion(new_post)});
+export const addInfo = async (new_post, db_path, db_id, db_field) => {
+    const ref = doc(db, db_path, db_id);
+    const temp = await getDoc(ref);
+    if (temp.exists())
+        await updateDoc(ref, {[db_field]: arrayUnion(new_post)});
+    else
+        await setDoc(ref, {[db_field]: [new_post]})
 }
 
 export const getDefaultAvatarURL = async () => {
