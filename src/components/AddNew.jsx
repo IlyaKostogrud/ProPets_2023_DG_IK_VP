@@ -11,15 +11,28 @@ import Lost_post from "../objects/lost_post";
 import Feed_post from "../objects/feed_post";
 import {render} from "react-dom";
 import root from "react-dom";
+import {addPost} from "../firebase/propets-service";
 
 const AddNew = () => {
     //add indicator of where it was click
-    const [text, setText] = useState("")
-    const [photos, setPhotos] = useState([])
+    const [post_text, setText] = useState("")
+    const [post_pics, setPhotos] = useState([])
     const dispatch = useDispatch();
-    const clickPublish = () => {
-        const post = Feed_post(/*{text, photos}*/)
-        console.log(post)
+    const clickPublish = async(e) => {
+        // const post = Feed_post(/*{text, photos}*/)
+        // console.log(post)
+        e.preventDefault();
+        const uid = sessionStorage.getItem('uid');
+        const date = Date.now();
+        const temp = {
+            post_date : date,
+            post_id : date,
+            post_text,
+            post_pics : [uid + '_' + date], //[null,null,null,null]//state.pics
+            post_type : "home",
+            post_author_id : uid,
+        };
+        await addPost(temp);
         dispatch(changeDisplay(HOME))
         /*return (
             document.getElementById("e")
@@ -61,7 +74,7 @@ const AddNew = () => {
             <div className="post_footer">
                 <img src={profile} alt="pfp"/>
                 <p>John Goodboi</p>
-                <input type="submit" value="Publish" onClick={()=>clickPublish()}/>
+                <input type="submit" value="Publish" onClick={(e)=>clickPublish(e)}/>
             </div>
         </form>
     );
