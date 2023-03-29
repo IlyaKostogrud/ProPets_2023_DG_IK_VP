@@ -16,14 +16,8 @@ export const addUserToDB = async (name, email) => {
     });
 };
 
-export const getUserInfo = async (uid) => {
-    const ref = doc(db, 'users', uid);
-    const temp = await getDoc(ref);
-    return temp.data();
-}
-
-export const getMainFeed = async () => {
-    const ref = doc(db, 'feedLF', 'mainFeed');
+export const getInfo = async (db_path, db_id) => {
+    const ref = doc(db, db_path, db_id);
     const temp = await getDoc(ref);
     return temp.data();
 }

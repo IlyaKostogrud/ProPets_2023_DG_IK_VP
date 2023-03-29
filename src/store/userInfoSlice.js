@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {getUserInfo} from "../firebase/propets-service";
+import {getInfo} from "../firebase/propets-service";
 
 const initialState = {
     user: {},
@@ -10,7 +10,7 @@ const initialState = {
 export const fetchUser = createAsyncThunk('userInfo/fetchUser',
     async function(_,{rejectWithValue,dispatch}){
         try {
-            const response = await getUserInfo(sessionStorage.getItem('uid'));
+            const response = await getInfo('users',sessionStorage.getItem('uid'));
             dispatch(addUser(response));
         }catch (error) {
             console.log(error);
