@@ -6,7 +6,7 @@ const PostListHome = ({posts, title}) => {
         <div>
             <h1 style={{textAlign:'center'}}>{title}</h1>
             {posts.map(post=>
-                <PostItemHome post={post} key={post.postID}/>)}
+                <PostItemHome post={post} key={post.post_id}/>)}
         </div>
     );
 };

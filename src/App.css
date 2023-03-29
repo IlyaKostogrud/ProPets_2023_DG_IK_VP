@@ -98,6 +98,10 @@ button{
     flex-direction: column;
 }
 
+.avatar {
+    height: 90%;
+}
+
 .main-body{
     height: 90vh;
 }

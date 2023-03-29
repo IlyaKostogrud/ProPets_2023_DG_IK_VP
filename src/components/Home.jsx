@@ -15,6 +15,7 @@ const Home = () => {
     return (
         <div>
             <PostListHome posts={posts} title={'Home Page'}/>
+
         </div>
     );
 };
