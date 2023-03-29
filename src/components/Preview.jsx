@@ -24,7 +24,7 @@ const Preview = ({changePreview, fields}) => {
         <div className="Preview">
             <h2> Preview and Publish. Please share the post to your FB to be more effective.</h2>
             <div className="Preview_body">
-                <img src={fields.photo} alt="post_photo"/>
+                <img src={fields.imageUrl} alt="post_photo"/>
                 <h2>{fields.type}, {fields.breed}</h2>
                 <p>Color:{fields.color}</p>
                 <p>Sex:{fields.sex}</p>

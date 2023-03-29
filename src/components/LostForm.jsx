@@ -1,11 +1,17 @@
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg"
 import dropsite from "../images/Group 43.svg"
 import upload from "../images/upload.png"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {drop, allowDrop} from "../utils/drag&drop"
 import {lorem_ipsum} from "../utils/constants"
 
 const LostForm = ({setters, fields, changePreview}) => {
+
+    useEffect(() => {
+        if (fields.photo) {
+            setters.setImageUrl(URL.createObjectURL(fields.photo));
+        }
+    }, [fields.photo]);
 
     return (
         <div className="Lost_form">
@@ -45,25 +51,21 @@ const LostForm = ({setters, fields, changePreview}) => {
                 <textarea value={fields.location} id="location" placeholder="Florentin street, Tel Aviv"
                           onChange={(e) => setters.setLocation(e.target.value)}/>
                 <br/>
-                {/*<img src={dropsite} id="pic" alt="default_photo" accept="image/*" onDrop={() => drop()} onDragOver={() => allowDrop()} onChange={
-                        (e) => {
-                            setPhoto(e.target.value)
-                            /*document.getElementById("upload_list").value += this.name*//*
-                        }
-                    }/>
+                <img src={dropsite} id="pic0" alt="default_photo"/>
+                <img src={fields.imageUrl} id="pic" alt="new_photo" style={{display : "none"}} onDrop={() => drop()} onDragOver={() => allowDrop()}/>
                     <div className="Drag&drop">
                         <img src={upload} alt="upload"/>
                         <p>Drag and drop photos or</p>
-                        <input type="file" name="Browse" id="file" onChange={
-                            () => {
-                                let old_pic = document.getElementById("pic")
-                                let new_pic = document.getElementById("file")
-                                console.log(old_pic)
-                                old_pic.src.replace("C: \\fakepath\\", new_pic.src)
+                        <input accept="image/*" multiple type="file" name="Browse[]" id="file" /*defaultValue={dropsite}*/ onChange={
+                            (e) => {
+                                document.getElementById("pic0").style.display = "none"
+                                document.getElementById("pic").style.display = "initial"
+                                document.getElementById("upload_list").value += e.target.files[0].name + "\n"
+                                setters.setPhoto(e.target.files[0])
                             }
                         }/>
                         <textarea id="upload_list"/>
-                    </div>*/}
+                    </div>
                 <div className="Contacts">
                     Contacts:
                     <input value={fields.phone} type="text" placeholder="Phone*" onChange={(e) => setters.setPhone(e.target.value)}/>

@@ -9,5 +9,6 @@ export function allowDrop(ev) {
 export function drop(ev) {
     ev.preventDefault();
     let data = ev.dataTransfer.getData("text");
+    console.log(data)
     ev.target.appendChild(document.getElementById(data));
 }
