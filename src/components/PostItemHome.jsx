@@ -16,6 +16,9 @@ const PostItemHome = (props) => {
         })();
     },[]);
 
+    const date = new Date(props.post.post_date).toString();
+
+
     return (
         <div className={'container post-home'}>
             <div className={'row post'}>
@@ -24,7 +27,7 @@ const PostItemHome = (props) => {
                 </div>
                 <div className={'col-10'}>
                     <div>{author_name}</div>
-                    <div>Time: {props.post.post_date}</div>
+                    <div className={'post_date'}>{date}</div>
                     <div>Pic name: {props.post.post_pics[0]}</div>
                     {/*<img className={'welcome-page-img2'} src={WelcomePageImg2} alt="Puppy,cat and bird"/>*/}
                     <div>Text: {props.post.post_text}</div>
