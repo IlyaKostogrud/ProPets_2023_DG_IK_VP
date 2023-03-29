@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
-import PostItemHome from "./PostItemHome";
-import {lorem_ipsum} from "../utils/constants";
+import React, {useEffect, useState} from 'react';
 import PostListHome from "./PostListHome";
+import {getMainFeed} from "../firebase/propets-service";
 
 const Home = () => {
-    const [posts, setPosts] = useState([
-        {postID:'1111',authorName:'John Goodboi',authorIcon:'author Icon',postTime:Date.now(),picture:'Picture',text:lorem_ipsum},
-        {postID:'2222',authorName:'John Goodboi',authorIcon:'author Icon',postTime:Date.now(),picture:'Picture',text:lorem_ipsum},
-        {postID:'3333',authorName:'John Goodboi',authorIcon:'author Icon',postTime:Date.now(),picture:'Picture',text:lorem_ipsum}
-    ])
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        (async function () {
+            const {feed_array} = await getMainFeed();
+            setPosts(feed_array);
+        })();
+    }, [])
+
     return (
         <div>
             <PostListHome posts={posts} title={'Home Page'}/>
