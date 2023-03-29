@@ -15,7 +15,7 @@ const MyProfile = () => {
 
     return (
         <div className={'my-profile'}>
-            <img src={userInfo.avatar_url} alt={'Profile avatar'}/>
+            <img className={'author_avatar'} src={userInfo.avatar_url} alt={'Profile avatar'}/>
             <p>{userInfo.name}</p>
             <input value={email} onChange={(e) => setEmail(e.target.value)} type={'email'} placeholder={'helenjohnson@gmail.com'}/>
             <input value={phone} onChange={(e) => setPhone(e.target.value)} type={'tel'} placeholder={'000-000-00-00'}/>

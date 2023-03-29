@@ -16,4 +16,5 @@ export const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipisicing 
 export const path_feedLF = 'feedLF';
 export const id_mainFeed = 'mainFeed';
 export const field_feed_array = 'feed_array';
+export const path_users = 'users';
 
