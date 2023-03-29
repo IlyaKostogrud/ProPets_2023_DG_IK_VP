@@ -20,7 +20,7 @@ const ProfileInfo = () => {
 
     return (
         <div className={'profile-info'}>
-            <img src={userInfo.avatar_url} alt={'Profile avatar'}/>
+            <img className={'author_avatar'} src={userInfo.avatar_url} alt={'Profile avatar'}/>
             <button disabled={display === PROFILE} onClick={() => dispatch(changeDisplay(PROFILE))}>{userInfo.name}
             </button>
             <button onClick={handleOnClickLogout}>Logout</button>

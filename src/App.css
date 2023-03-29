@@ -98,8 +98,8 @@ button{
     flex-direction: column;
 }
 
-.avatar {
-    height: 90%;
+.author_avatar {
+    height: 35px;
 }
 
 .main-body{
