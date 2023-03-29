@@ -13,11 +13,12 @@ import {render} from "react-dom";
 import root from "react-dom";
 
 const AddNew = () => {
+    //add indicator of where it was click
     const [text, setText] = useState("")
     const [photos, setPhotos] = useState([])
     const dispatch = useDispatch();
     const clickPublish = () => {
-        const post = Feed_post({text, photos})
+        const post = Feed_post(/*{text, photos}*/)
         console.log(post)
         dispatch(changeDisplay(HOME))
         /*return (
