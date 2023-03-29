@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import LostForm from "./LostForm";
 import Preview from "./Preview";
 
+
 const LostFillingForm = () => {
     const [type, setType] = useState("dog")
     const [sex, setSex] = useState("male")
@@ -11,15 +12,16 @@ const LostFillingForm = () => {
     const [distinctive_features, setDistinctive_features] = useState("")
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
-    //const [photo, setPhoto] = useState([])
+    const [photo, setPhoto] = useState(null)
+    const [imageUrl, setImageUrl] = useState(null);
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [facebook_profile, setFacebook_profile] = useState("")
 
     const [preview, setPreview] = useState(false);
 
-    const fields = {type, sex, breed, color, height, distinctive_features, description, location, phone, email, facebook_profile};
-    const setters = {setType, setSex, setBreed, setColor, setHeight, setDistinctive_features, setDescription, setLocation, setPhone, setEmail, setFacebook_profile};
+    const fields = {type, sex, breed, color, height, distinctive_features, description, location, photo, imageUrl, phone, email, facebook_profile};
+    const setters = {setType, setSex, setBreed, setColor, setHeight, setDistinctive_features, setDescription, setLocation, setPhoto, setImageUrl, setPhone, setEmail, setFacebook_profile};
 
     const changePreview = () => {
         setPreview(!preview);

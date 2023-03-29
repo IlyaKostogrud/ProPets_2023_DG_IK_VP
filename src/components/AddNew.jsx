@@ -19,7 +19,6 @@ const AddNew = () => {
     const clickPublish = () => {
         const post = Feed_post({text, photos})
         console.log(post)
-        root.render(post)
         dispatch(changeDisplay(HOME))
         /*return (
             document.getElementById("e")
