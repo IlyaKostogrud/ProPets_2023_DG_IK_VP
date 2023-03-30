@@ -2,16 +2,18 @@ import React, {useEffect, useState} from 'react';
 import {getInfo} from "../firebase/propets-service";
 import {path_users} from "../utils/constants";
 
-let picture_url;
-let author_name;
+
 const PostItemHome = (props) => {
     const [loading, setLoading] = useState(true);
+    const [picture_url, setPicture_url] = useState('')
+    const [author_name, setAuthor_name] = useState('');
 
     useEffect(()=>{
         (async function (){
-            const temp = await getInfo(path_users,props.post.post_author_id);
-            picture_url = temp.avatar_url;
-            author_name = temp.name;
+            let temp = await getInfo(path_users,props.post.post_author_id);
+            console.log(temp);
+            setPicture_url(temp.avatar_url);
+            setAuthor_name(temp.name);
             setLoading(!loading);
         })();
     },[]);
@@ -29,7 +31,6 @@ const PostItemHome = (props) => {
                     <div>{author_name}</div>
                     <div className={'post_date'}>{date}</div>
                     <div>Pic name: {props.post.post_pics[0]}</div>
-                    {/*<img className={'welcome-page-img2'} src={WelcomePageImg2} alt="Puppy,cat and bird"/>*/}
                     <div>Text: {props.post.post_text}</div>
                 </div>
                 <div className={'col-1 post-menu-buttons'}>
