@@ -17,4 +17,9 @@ export const path_feedLF = 'feedLF';
 export const id_mainFeed = 'mainFeed';
 export const field_feed_array = 'feed_array';
 export const path_users = 'users';
+export const messages = ["Fingers crossed. We wish your fluffy to be found as soon as possible.\n" +
+"                    Your post will expire in two weeks. To make it active again follow the instruction you'll get in\n" +
+"                    email.", "Fingers crossed. We hope this fluffy will be found as soon as possible.\n" +
+"                    Your post will expire in two weeks. To make it active again follow the instruction you'll get in\n" +
+"                    email."];
 
