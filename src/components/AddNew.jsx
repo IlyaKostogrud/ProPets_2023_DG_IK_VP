@@ -11,6 +11,7 @@ const AddNew = () => {
     //add indicator of where it was click
     const [post_text, setText] = useState("")
     const [post_pics, setPhotos] = useState([])
+    const [post_type, setType] = useState("home")
     const dispatch = useDispatch();
     const clickPublish = async (e) => {
         // const post = Feed_post(/*{text, photos}*/)
@@ -68,6 +69,16 @@ const AddNew = () => {
                 }/>
                 <textarea id="upload_list"/>
             </div>
+            <label htmlFor="type">Post type:</label>
+            <select value = {post_type} name = "type" id="type" onChange={
+                (e) => setType(e.target.value)
+            }>
+                <option value="home">Home</option>
+                <option value="walking">Walking</option>
+                <option value="fostering">Fostering</option>
+                <option value="vet_help">Vet help</option>
+                <option value="hotels">Hotels</option>
+            </select>
             <br/>
             <div className="post_footer">
                 <img src={profile} alt="pfp"/>
