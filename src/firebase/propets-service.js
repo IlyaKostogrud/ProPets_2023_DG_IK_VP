@@ -1,4 +1,4 @@
-import {getDownloadURL, ref} from "firebase/storage";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {db, storage} from "./firebase-config";
 import {doc, setDoc, getDoc, updateDoc, arrayUnion} from "firebase/firestore"
 import {getUid} from "./auth-service";
@@ -31,8 +31,18 @@ export const addInfo = async (new_post, db_path, db_id, db_field) => {
         await setDoc(ref, {[db_field]: [new_post]})
 }
 
+export const uploadImage = async (file, user_id, file_name) => {
+    const storageRef = ref(storage, `users/${user_id}/images/${file_name}`)
+    await uploadBytes(storageRef, file)
+        .catch(error => error);
+}
+
 export const getDefaultAvatarURL = async () => {
     return await getDownloadURL(ref(storage, 'images/default-avatar.png'))
         .catch(error => error);
 };
 
+export const getImage = async (user_id, file_name) => {
+    return await getDownloadURL(ref(storage, `users/${user_id}/images/${file_name}`))
+        .catch(error => error);
+}
