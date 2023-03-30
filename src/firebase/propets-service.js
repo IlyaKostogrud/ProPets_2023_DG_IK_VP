@@ -42,7 +42,7 @@ export const getDefaultAvatarURL = async () => {
         .catch(error => error);
 };
 
-export const getImage = async (user_id, file_name) => {
+export const getImageURL = async (user_id, file_name) => {
     return await getDownloadURL(ref(storage, `users/${user_id}/images/${file_name}`))
         .catch(error => error);
-}
+};

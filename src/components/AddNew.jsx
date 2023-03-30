@@ -5,13 +5,13 @@ import upload from "../images/upload.png";
 import {drop, allowDrop} from "../utils/drag&drop";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {useDispatch} from "react-redux";
-import {addInfo} from "../firebase/propets-service";
+import {addInfo, uploadImage} from "../firebase/propets-service";
 
 const AddNew = () => {
     //add indicator of where it was click
-    const [post_text, setText] = useState("")
-    const [post_pics, setPhotos] = useState([])
-    const [post_type, setType] = useState("home")
+    const [post_text, setText] = useState("");
+    const [post_pics, setPhotos] = useState(null);
+    const [post_type, setType] = useState("home");
     const dispatch = useDispatch();
     const clickPublish = async (e) => {
         // const post = Feed_post(/*{text, photos}*/)
@@ -19,16 +19,18 @@ const AddNew = () => {
         e.preventDefault();
         const uid = sessionStorage.getItem('uid');
         const date = Date.now();
+        const fileName = `${uid}_${date}`;
+        await uploadImage(post_pics, uid, fileName);
         const temp = {
             post_date: date,
             post_id: date,
             post_text,
-            post_pics: [uid + '_' + date], //[null,null,null,null]//state.pics
-            post_type: "home",
+            post_pics: [fileName], //[null,null,null,null]//state.pics
+            post_type,
             post_author_id: uid,
         };
         await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
-        dispatch(changeDisplay(HOME))
+        dispatch(changeDisplay(HOME));
         /*return (
             document.getElementById("e")
         )*/
@@ -60,13 +62,11 @@ const AddNew = () => {
             <div className="Drag&drop">
                 <img src={upload} alt="upload"/>
                 <p>Drag and drop photos or</p>
-                <input type="file" name="Browse" onClick={
-                    () => {
-                        let pic1 = document.getElementById("pic1")
-                        pic1.src.replace("C: \\fakepath\\", "")
-                        setPhotos[0](pic1.src)
-                    }
-                }/>
+                <input type="file" name="Browse" onChange={(e) => setPhotos(e.target.files[0])
+                        // let pic1 = document.getElementById("pic1")
+                        // pic1.src.replace("C: \\fakepath\\", "")
+                        // setPhotos([pic1.src])
+                    }/>
                 <textarea id="upload_list"/>
             </div>
             <label htmlFor="type">Post type:</label>
