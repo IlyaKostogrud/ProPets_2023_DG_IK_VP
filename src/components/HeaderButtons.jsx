@@ -4,6 +4,7 @@ import {
     FAVORITES,
     FOSTERING,
     FOUND,
+    FOUND_FORM,
     HOME,
     HOTELS,
     LOST,
@@ -42,7 +43,7 @@ const HeaderButtons = ({handleClickProceed}) => {
             return (
                 <div>
                     <button onClick={() => dispatch(changeDisplay(LOST_FORM))}>I lost my pet</button>
-                    <button>I found a pet</button>
+                    <button onClick={() => dispatch(changeDisplay(FOUND_FORM))}>I found a pet</button>
                 </div>
             );
         default:

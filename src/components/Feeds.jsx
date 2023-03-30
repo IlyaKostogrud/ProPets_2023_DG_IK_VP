@@ -4,6 +4,7 @@ import {
     FAVORITES,
     FOSTERING,
     FOUND,
+    FOUND_FORM,
     HOTELS,
     LOST,
     LOST_FORM,
@@ -23,6 +24,7 @@ import Hotels from "./Hotels";
 import Walking from "./Walking";
 import Fostering from "./Fostering";
 import VetHelp from "./VetHelp";
+import FoundFillingForm from "./FoundFillingForm";
 
 const Feeds = () => {
     const {display} = useSelector(state => state.mainDisplay);
@@ -34,6 +36,8 @@ const Feeds = () => {
             return <LostFillingForm/>
         case FOUND:
             return <FoundFeed/>
+        case FOUND_FORM:
+            return <FoundFillingForm/>
         case HOTELS:
             return <Hotels/>
         case WALKING:
