@@ -13,7 +13,7 @@ const LostFillingForm = () => {
     const [description, setDescription] = useState("")
     const [location, setLocation] = useState("")
     const [photo, setPhoto] = useState(null)
-    const [imageUrl, setImageUrl] = useState(null);
+    const [imageUrl, setImageUrl] = useState("../images/Group 43.svg");
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [facebook_profile, setFacebook_profile] = useState("")

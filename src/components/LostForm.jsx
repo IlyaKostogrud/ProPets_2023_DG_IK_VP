@@ -11,6 +11,9 @@ const LostForm = ({setters, fields, changePreview}) => {
         if (fields.photo) {
             setters.setImageUrl(URL.createObjectURL(fields.photo));
         }
+        else{
+            setters.setImageUrl(dropsite)
+        }
     }, [fields.photo]);
 
     return (
@@ -51,15 +54,12 @@ const LostForm = ({setters, fields, changePreview}) => {
                 <textarea value={fields.location} id="location" placeholder="Florentin street, Tel Aviv"
                           onChange={(e) => setters.setLocation(e.target.value)}/>
                 <br/>
-                <img src={dropsite} id="pic0" alt="default_photo"/>
-                <img src={fields.imageUrl} id="pic" alt="new_photo" style={{display : "none"}} onDrop={() => drop()} onDragOver={() => allowDrop()}/>
+                <img src={fields.imageUrl} id="pic" alt="new_photo" onDrop={() => drop()} onDragOver={() => allowDrop()}/>
                     <div className="Drag&drop">
                         <img src={upload} alt="upload"/>
                         <p>Drag and drop photos or</p>
-                        <input accept="image/*" multiple type="file" name="Browse[]" id="file" /*defaultValue={dropsite}*/ onChange={
+                        <input accept="image/*" multiple type="file" name="Browse[]" id="file" onChange={
                             (e) => {
-                                document.getElementById("pic0").style.display = "none"
-                                document.getElementById("pic").style.display = "initial"
                                 document.getElementById("upload_list").value += e.target.files[0].name + "\n"
                                 setters.setPhoto(e.target.files[0])
                             }
