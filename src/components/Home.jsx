@@ -14,8 +14,7 @@ const Home = () => {
 
     return (
         <div>
-            <PostListHome posts={posts} title={'Home Page'}/>
-
+            <PostListHome posts={posts} title={'Home Page'} list_type={'home'}/>
         </div>
     );
 };
