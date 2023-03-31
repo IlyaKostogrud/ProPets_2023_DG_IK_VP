@@ -1,13 +1,14 @@
 import React from 'react';
 import PostItemHome from "./PostItemHome";
 
-const PostListHome = ({posts, title, list_type}) => {
+const PostListHome = ({posts, title, list_type, favorites, updateFavorites}) => {
     return (
         <div>
             <h1 style={{textAlign: 'center'}}>{title}</h1>
-            {posts.reverse().map(post =>
-                (post.post_type === list_type) ? <PostItemHome post={post} key={post.post_id}/> : null
-            )}
+            {posts.map(post =>
+                (post.post_type === list_type) ?
+                    <PostItemHome post={post} favorites={favorites} updateFavorites={updateFavorites}
+                                  key={post.post_id}/> : null)}
         </div>
     );
 };
