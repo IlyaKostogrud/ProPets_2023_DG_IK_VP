@@ -4,7 +4,8 @@ import PostItemHome from "./PostItemHome";
 const PostListHome = ({posts, title, list_type, favorites, updateFavorites}) => {
     return (
         <div>
-            <h1 style={{textAlign: 'center'}}>{title}</h1>
+
+            <h2 style={{textAlign: 'center'}}>{title}</h2>
             {posts.map(post =>
                 (post.post_type === list_type) ?
                     <PostItemHome post={post} favorites={favorites} updateFavorites={updateFavorites}
