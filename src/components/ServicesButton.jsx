@@ -1,7 +1,17 @@
 import React, {useState} from 'react';
-import {FOSTERING, HOTELS, isDisplayArray, VET_HELP, WALKING} from "../utils/constants";
+import {
+    FOSTERING,
+    fostering_page,
+    HOTELS,
+    hotels_page,
+    isDisplayArray,
+    VET_HELP, vet_help_page,
+    WALKING,
+    walking_page
+} from "../utils/constants";
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
+import {Link} from "react-router-dom";
 
 const ServicesButton = () => {
     const {display} = useSelector(state => state.mainDisplay);
@@ -21,10 +31,18 @@ const ServicesButton = () => {
         <>
             <button disabled={isDisabled()} onClick={() => setButtonsGroup(!buttonsGroup)}>Services</button>
             {displayButtons() && <div className={'services-buttons-group'}>
-                <button disabled={display === HOTELS} onClick={() => dispatch(changeDisplay(HOTELS))}>Hotels</button>
-                <button disabled={display === WALKING} onClick={() => dispatch(changeDisplay(WALKING))}>Walking</button>
-                <button disabled={display === FOSTERING} onClick={() => dispatch(changeDisplay(FOSTERING))}>Fostering</button>
-                <button disabled={display === VET_HELP} onClick={() => dispatch(changeDisplay(VET_HELP))}>VetHelp</button>
+                <Link to={hotels_page}>
+                    <button disabled={display === HOTELS} onClick={() => dispatch(changeDisplay(HOTELS))}>Hotels</button>
+                </Link>
+                <Link to={walking_page}>
+                    <button disabled={display === WALKING} onClick={() => dispatch(changeDisplay(WALKING))}>Walking</button>
+                </Link>
+                <Link to={fostering_page}>
+                    <button disabled={display === FOSTERING} onClick={() => dispatch(changeDisplay(FOSTERING))}>Fostering</button>
+                </Link>
+                <Link to={vet_help_page}>
+                    <button disabled={display === VET_HELP} onClick={() => dispatch(changeDisplay(VET_HELP))}>VetHelp</button>
+                </Link>
             </div>}
         </>
     );

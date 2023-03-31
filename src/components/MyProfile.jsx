@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {HOME} from "../utils/constants";
+import {HOME, home_page} from "../utils/constants";
+import {Link} from "react-router-dom";
 
 const MyProfile = () => {
     const userInfo = useSelector(state => state.userInfo.user);
@@ -20,8 +21,10 @@ const MyProfile = () => {
             <input value={email} onChange={(e) => setEmail(e.target.value)} type={'email'} placeholder={'helenjohnson@gmail.com'}/>
             <input value={phone} onChange={(e) => setPhone(e.target.value)} type={'tel'} placeholder={'000-000-00-00'}/>
             <input value={fbLink} onChange={(e) => setFbLink(e.target.value)} type={'text'} placeholder={'https://facebook.com/anna.smith908430'}/>
-            <button onClick={() => dispatch(changeDisplay(HOME))}>Cancel</button>
-            <button onClick={() => dispatch(changeDisplay(HOME))}>Save changes</button>
+            <Link to={home_page}>
+                <button onClick={() => dispatch(changeDisplay(HOME))}>Cancel</button>
+                <button onClick={() => dispatch(changeDisplay(HOME))}>Save changes</button>
+            </Link>
         </div>
     );
 };
