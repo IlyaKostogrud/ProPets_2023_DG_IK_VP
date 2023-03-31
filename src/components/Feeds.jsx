@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from "react-redux";
 import {
     ADD_NEW,
     FAVORITES,
@@ -18,7 +19,6 @@ import Home from "./Home";
 import AddNew from "./AddNew";
 import FoundFeed from "./FoundFeed";
 import Profile from "./Profile";
-import {useSelector} from "react-redux";
 import LostFillingForm from "./LostFillingForm";
 import Hotels from "./Hotels";
 import Walking from "./Walking";

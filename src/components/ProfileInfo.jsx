@@ -1,9 +1,10 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {PROFILE} from "../utils/constants";
+import {base_url, PROFILE, profile_page} from "../utils/constants";
 import {changeState} from "../store/welcomeMainSlice";
 import {logout} from "../firebase/auth-service";
+import {Link} from "react-router-dom";
 
 const ProfileInfo = () => {
     const userInfo = useSelector(state => state.userInfo.user);
@@ -21,9 +22,14 @@ const ProfileInfo = () => {
     return (
         <div className={'profile-info'}>
             <img className={'author_avatar'} src={userInfo.avatar_url} alt={'Profile avatar'}/>
-            <button disabled={display === PROFILE} onClick={() => dispatch(changeDisplay(PROFILE))}>{userInfo.name}
-            </button>
-            <button onClick={handleOnClickLogout}>Logout</button>
+            <Link to={profile_page}>
+                <button disabled={display === PROFILE} onClick={() => dispatch(changeDisplay(PROFILE))}>
+                    {userInfo.name}
+                </button>
+            </Link>
+            <Link to={base_url}>
+                <button onClick={handleOnClickLogout}>Logout</button>
+            </Link>
         </div>
     );
 };
