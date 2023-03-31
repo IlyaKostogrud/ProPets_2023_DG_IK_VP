@@ -20,7 +20,7 @@ export const getInfo = async (db_path, db_id) => {
     const ref = doc(db, db_path, db_id);
     const temp = await getDoc(ref);
     return temp.data();
-}
+};
 
 export const addInfo = async (new_post, db_path, db_id, db_field) => {
     const ref = doc(db, db_path, db_id);
@@ -29,13 +29,18 @@ export const addInfo = async (new_post, db_path, db_id, db_field) => {
         await updateDoc(ref, {[db_field]: arrayUnion(new_post)});
     else
         await setDoc(ref, {[db_field]: [new_post]})
-}
+};
+
+export const updateInfo = async (updated_data, db_path, db_id, db_field) => {
+    const ref = doc(db, db_path, db_id);
+    await updateDoc(ref,{[db_field]: updated_data});
+};
 
 export const uploadImage = async (file, user_id, file_name) => {
     const storageRef = ref(storage, `users/${user_id}/images/${file_name}`)
     await uploadBytes(storageRef, file)
         .catch(error => error);
-}
+};
 
 export const getDefaultAvatarURL = async () => {
     return await getDownloadURL(ref(storage, 'images/default-avatar.png'))
