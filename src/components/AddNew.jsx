@@ -38,7 +38,7 @@ const AddNew = () => {
     };
     return (
         <form className="addNew">
-            <h1> Your new post! Simply text, add photos and publish.</h1>
+            <h2> Your new post! Simply text, add photos and publish.</h2>
             <label htmlFor="newPost">
                 <p>Text:</p>
                 <p>up to 1500 char</p>
