@@ -15,15 +15,11 @@ import {
 } from "../utils/constants";
 import LostFeed from "./LostFeed";
 import Favorites from "./Favorites";
-import Home from "./Home";
+import HomeServices from "./HomeServices";
 import AddNew from "./AddNew";
 import FoundFeed from "./FoundFeed";
 import Profile from "./Profile";
 import LostFillingForm from "./LostFillingForm";
-import Hotels from "./Hotels";
-import Walking from "./Walking";
-import Fostering from "./Fostering";
-import VetHelp from "./VetHelp";
 import FoundFillingForm from "./FoundFillingForm";
 
 const Feeds = () => {
@@ -39,13 +35,13 @@ const Feeds = () => {
         case FOUND_FORM:
             return <FoundFillingForm/>
         case HOTELS:
-            return <Hotels/>
+            return <HomeServices title={'Hotels'} list_type={'hotels'}/>
         case WALKING:
-            return <Walking/>
+            return <HomeServices title={'Walking'} list_type={'walking'}/>
         case FOSTERING:
-            return <Fostering/>
+            return <HomeServices title={'Fostering'} list_type={'fostering'}/>
         case VET_HELP:
-            return <VetHelp/>
+            return <HomeServices title={'VetHelp'} list_type={'vet_help'}/>
         case FAVORITES:
             return <Favorites/>
         case ADD_NEW:
@@ -53,7 +49,7 @@ const Feeds = () => {
         case PROFILE:
             return <Profile/>
         default:
-            return <Home/>
+            return <HomeServices title={'HomeServices Page'} list_type={'home'}/>
     }
 };
 
