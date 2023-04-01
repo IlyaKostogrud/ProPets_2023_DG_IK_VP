@@ -7,8 +7,8 @@ import {
     FOUND,
     FOUND_FORM,
     HOTELS,
-    LOST,
-    LOST_FORM,
+    LOST, lost_feed_page,
+    LOST_FORM, lost_form_page,
     PROFILE,
     VET_HELP,
     WALKING
@@ -21,9 +21,16 @@ import FoundFeed from "./FoundFeed";
 import Profile from "./Profile";
 import LostFillingForm from "./LostFillingForm";
 import FoundFillingForm from "./FoundFillingForm";
+import {Route, Routes} from "react-router-dom";
 
 const Feeds = () => {
-    const {display} = useSelector(state => state.mainDisplay);
+    return(
+        <Routes>
+            <Route path = {lost_feed_page} element={<LostFeed/>}/>
+            <Route path = {lost_form_page} element={<LostFillingForm/>}/>
+        </Routes>
+    )
+    /*const {display} = useSelector(state => state.mainDisplay);
 
     switch (display) {
         case LOST:
@@ -50,7 +57,7 @@ const Feeds = () => {
             return <Profile/>
         default:
             return <HomeServices title={'HomeServices Page'} list_type={'home'}/>
-    }
+    }*/
 };
 
 export default Feeds;
