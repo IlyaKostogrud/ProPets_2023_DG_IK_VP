@@ -1,15 +1,20 @@
 import React from 'react';
 import {
-    ADD_NEW, add_new_page,
+    ADD_NEW,
+    add_new_page,
     FAVORITES,
     FOSTERING,
     FOUND,
-    FOUND_FORM, found_form_page,
+    FOUND_FORM,
+    found_form_page,
     HOME,
     HOTELS,
     LOST,
-    LOST_FORM, lost_form_page,
-    SERVICES, sign_in_page, VET_HELP,
+    LOST_FORM,
+    lost_form_page,
+    SERVICES,
+    sign_in_page,
+    VET_HELP,
     WALKING
 } from "../utils/constants";
 import {changeDisplay} from "../store/mainDisplaySlice";
