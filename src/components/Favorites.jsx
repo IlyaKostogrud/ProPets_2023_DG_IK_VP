@@ -16,8 +16,8 @@ const Favorites = () => {
     useEffect(() => {
         (async function () {
             const uid = sessionStorage.getItem('uid');
-            const {feed_array} = await getInfo('feedLF', 'mainFeed');
-            const {fav_array} = await getInfo('favorites', uid);
+            const {feed_array} = await getInfo('feedLF', 'mainFeed', 'feed_array');
+            const {fav_array} = await getInfo('favorites', uid, 'fav_array');
             setState({
                 posts: feed_array.reverse(),
                 favorites: fav_array,
@@ -32,7 +32,10 @@ const Favorites = () => {
             <h2 style={{textAlign: 'center'}}>Favorites</h2>
             {state.posts.map(post => {
                 if (state.favorites.includes(post.post_id))
-                    return <PostItemHome post={post} favorites={state.favorites} updateFavorites={updateFavorites} key={post.post_id}/>
+                    return <PostItemHome post={post} favorites={state.favorites} updateFavorites={updateFavorites}
+                                         key={post.post_id}/>
+                else
+                    return null;
             })}
         </div>
     );
