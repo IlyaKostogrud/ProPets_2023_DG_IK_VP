@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {field_feed_array, HOME, id_mainFeed, lorem_ipsum, path_feedLF} from "../utils/constants";
+import {field_feed_array, HOME, home_page, id_mainFeed, lorem_ipsum, path_feedLF} from "../utils/constants";
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import upload from "../images/upload.png";
 import {drop, allowDrop} from "../utils/drag&drop";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addInfo, uploadImage} from "../firebase/propets-service";
+import {Link} from "react-router-dom";
 
 const AddNew = () => {
     //add indicator of where it was click
@@ -36,54 +37,77 @@ const AddNew = () => {
         )*/
         //createRoot(document.getElementById({date + " " + name}))
     };
+
+    const userInfo = useSelector(state => state.userInfo.user);
+
     return (
         <form className="addNew">
             <h2> Your new post! Simply text, add photos and publish.</h2>
-            <label htmlFor="newPost">
-                <p>Text:</p>
-                <p>up to 1500 char</p>
-            </label>
-            <textarea id="newPost" placeholder={lorem_ipsum} onChange={(e) => setText(e.target.value)}/>
-            <br/>
-            <label htmlFor="photos">
-                <p>Photos:</p>
-                <p>up to 4 images</p>
-            </label>
-            <div id="photos">
-                <img src={profile} id="pic1" alt="pic1" accept="image/*" onDrop={() => drop()}
-                     onDragOver={() => allowDrop()}/>
-                <img src={profile} id="pic2" alt="pic2" accept="image/*" onDrop={() => drop()}
-                     onDragOver={() => allowDrop()}/>
-                <img src={profile} id="pic3" alt="pic3" accept="image/*" onDrop={() => drop()}
-                     onDragOver={() => allowDrop()}/>
-                <img src={profile} id="pic4" alt="pic4" accept="image/*" onDrop={() => drop()}
-                     onDragOver={() => allowDrop()}/>
-            </div>
-            <div className="Drag&drop">
-                <img src={upload} alt="upload"/>
-                <p>Drag and drop photos or</p>
-                <input type="file" name="Browse" onChange={(e) => setPhotos(e.target.files[0])
-                        // let pic1 = document.getElementById("pic1")
-                        // pic1.src.replace("C: \\fakepath\\", "")
-                        // setPhotos([pic1.src])
-                    }/>
-                <textarea id="upload_list"/>
-            </div>
-            <label htmlFor="type">Post type:</label>
-            <select value = {post_type} name = "type" id="type" onChange={
-                (e) => setType(e.target.value)
-            }>
-                <option value="home">Home</option>
-                <option value="walking">Walking</option>
-                <option value="fostering">Fostering</option>
-                <option value="vet_help">Vet help</option>
-                <option value="hotels">Hotels</option>
-            </select>
-            <br/>
-            <div className="post_footer">
-                <img src={profile} alt="pfp"/>
-                <p>John Goodboi</p>
-                <input type="submit" value="Publish" onClick={(e) => clickPublish(e)}/>
+            <div className={'container addNew-content'}>
+                <div className={'row'} style={{height: '60vh'}}>
+                    <div className={'col-2'}>
+                        <label htmlFor="newPost">
+                            <p>Text:</p>
+                            <p>up to 1500 char</p>
+                        </label>
+                    </div>
+                    <div className={'col-10'}>
+                    <textarea id="newPost" style={{width: '95%', height: '95%'}} placeholder={lorem_ipsum}
+                              onChange={(e) => setText(e.target.value)}/>
+                    </div>
+                </div>
+                <div className={'row'}>
+                    <div className={'col-2'}>
+                        <label htmlFor="photos">
+                            <p>Photos:</p>
+                            {/*<p>up to 4 images</p>*/}
+                        </label>
+                    </div>
+                    <div className={'col-10'}>
+                        {/*<div id="photos">*/}
+                        {/*    <img src={profile} id="pic1" alt="pic1" accept="image/*" onDrop={() => drop()}*/}
+                        {/*         onDragOver={() => allowDrop()}/>*/}
+                        {/*</div>*/}
+                        <div className="Drag&drop">
+                            {/*<img src={upload} alt="upload"/>*/}
+                            {/*<p>Drag and drop photos or</p>*/}
+                            <input type="file" name="Browse" onChange={(e) => setPhotos(e.target.files[0])
+                                // let pic1 = document.getElementById("pic1")
+                                // pic1.src.replace("C: \\fakepath\\", "")
+                                // setPhotos([pic1.src])
+                            }/>
+                            {/*<textarea id="upload_list"/>*/}
+                        </div>
+                    </div>
+                </div>
+                <div className={'row'}>
+                    <div className={'col-2'}>
+                        <label htmlFor="type">Post type:</label>
+                    </div>
+                    <div className={'col-10'}>
+
+                        <select value={post_type} name="type" id="type" onChange={
+                            (e) => setType(e.target.value)}>
+                            <option value="home">Home</option>
+                            <option value="walking">Walking</option>
+                            <option value="fostering">Fostering</option>
+                            <option value="vet_help">Vet help</option>
+                            <option value="hotels">Hotels</option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div className="row post_footer">
+                    <div className={'col-2'}>
+                        <img className={'author_avatar'} src={userInfo.avatar_url} alt={'Profile avatar'}/>
+                    </div>
+                    <div className={'col-8'}>{userInfo.name}</div>
+                    <div className={'col-2'}>
+                        <Link to={home_page}>
+                            <button type="submit" onClick={(e) => clickPublish(e)}>Publish</button>
+                        </Link>
+                    </div>
+                </div>
             </div>
         </form>
     );
