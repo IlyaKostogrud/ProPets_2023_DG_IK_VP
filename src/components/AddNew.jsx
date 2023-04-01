@@ -48,18 +48,18 @@ const AddNew = () => {
                     <div className={'col-2'}>
                         <label htmlFor="newPost">
                             <p>Text:</p>
-                            <p>up to 1500 char</p>
+                            <p>(up to 1500 char)</p>
                         </label>
                     </div>
                     <div className={'col-10'}>
-                    <textarea id="newPost" style={{width: '95%', height: '95%'}} placeholder={lorem_ipsum}
+                    <textarea id="newPost" style={{width: '100%', height: '95%'}} placeholder={lorem_ipsum}
                               onChange={(e) => setText(e.target.value)}/>
                     </div>
                 </div>
                 <div className={'row'}>
                     <div className={'col-2'}>
                         <label htmlFor="photos">
-                            <p>Photos:</p>
+                            <p>Photo:</p>
                             {/*<p>up to 4 images</p>*/}
                         </label>
                     </div>
@@ -85,7 +85,6 @@ const AddNew = () => {
                         <label htmlFor="type">Post type:</label>
                     </div>
                     <div className={'col-10'}>
-
                         <select value={post_type} name="type" id="type" onChange={
                             (e) => setType(e.target.value)}>
                             <option value="home">Home</option>
@@ -104,7 +103,7 @@ const AddNew = () => {
                     <div className={'col-8'}>{userInfo.name}</div>
                     <div className={'col-2'}>
                         <Link to={home_page}>
-                            <button type="submit" onClick={(e) => clickPublish(e)}>Publish</button>
+                            <input type="submit" value={'Publish'} onChange={(e) => clickPublish(e)}/>
                         </Link>
                     </div>
                 </div>

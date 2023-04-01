@@ -47,16 +47,13 @@ const PostItemHome = (props) => {
                 <div className={'col-1 post-author-avatar'}>
                     <img className={'author_avatar'} src={state.picture_url} alt="post_author_avatar_url"/>
                 </div>
-                <div className={'col-10'}>
+                <div className={'col-11'}>
                     <div>{state.author_name}</div>
                     <div className={'post_date'}>{date}</div>
                     <div className={'post-image'}>
                         <img src={state.post_picture_url} alt={'post'}/>
                     </div>
                     <div>Text: {props.post.post_text}</div>
-                </div>
-                <div className={'col-1 post-menu-buttons'}>
-                    post-menu-buttons
                 </div>
                 <div className="favorite-star">
                     <span onClick={handleOnClickStar}>{state.star ? '★' : '☆'}</span>
