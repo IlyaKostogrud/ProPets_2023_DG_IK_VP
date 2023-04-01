@@ -4,6 +4,8 @@ import {changeState} from "../store/welcomeMainSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {getUid, loginFBase, registration} from "../firebase/auth-service";
 import {addUserToDB, getDefaultAvatarURL} from "../firebase/propets-service";
+import {home_page} from "../utils/constants";
+import {Link} from "react-router-dom";
 
 const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
     const {login} = useSelector(state => state.renderLoginR);
@@ -80,7 +82,9 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
             </form>
             <div className={'login-registration-buttons'}>
                 <button disabled={loading} onClick={() => changeCondition()}>Cancel</button>
-                <button disabled={loading} onClick={handleClickSubmit}>Submit</button>
+                <Link to={home_page}>
+                    <button disabled={loading} onClick={handleClickSubmit}>Submit</button>
+                </Link>
             </div>
         </div>
     );
