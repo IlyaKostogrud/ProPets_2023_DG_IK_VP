@@ -8,8 +8,6 @@ import {
     uploadImage
 } from "../firebase/propets-service";
 
-const uid = sessionStorage.getItem('uid');
-
 const initialState = {
     user: {},
     status: 'idle',
@@ -19,6 +17,7 @@ const initialState = {
 export const fetchUser = createAsyncThunk('userInfo/fetchUser',
     async (_, {rejectWithValue, dispatch}) => {
         try {
+            const uid = sessionStorage.getItem('uid');
             const response = await getInfo('users', uid);
             dispatch(addUser(response));
         } catch (error) {
@@ -31,6 +30,7 @@ export const fetchUser = createAsyncThunk('userInfo/fetchUser',
 export const fetchUpdatedUser = createAsyncThunk('userInfo/fetchUpdatedUser',
     async (userData, {rejectWithValue, dispatch}) => {
         try {
+            const uid = sessionStorage.getItem('uid');
             await addUserToDB(userData);
             const response = await getInfo('users', uid);
             dispatch(addUser(response));
@@ -43,6 +43,7 @@ export const fetchUpdatedUser = createAsyncThunk('userInfo/fetchUpdatedUser',
 export const fetchNewAvatar = createAsyncThunk('userInfo/fetchNewAvatar',
     async (picture, {rejectWithValue, dispatch, getState}) => {
         try {
+            const uid = sessionStorage.getItem('uid');
             const temp = getState().userInfo.user.avatar_url;
             const compare_with = await getDefaultAvatarURL();
             if (temp !== compare_with) {
