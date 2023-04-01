@@ -18,7 +18,6 @@ const HomeServices = ({title, list_type}) => {
             const uid = sessionStorage.getItem('uid');
             const {feed_array} = await getInfo('feedLF', 'mainFeed','feed_array');
             const {fav_array} = await getInfo('favorites', uid,'fav_array');
-            console.log(fav_array);
             setState({
                 posts: feed_array.reverse(),
                 favorites: fav_array,

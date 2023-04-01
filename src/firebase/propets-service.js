@@ -3,16 +3,10 @@ import {db, storage} from "./firebase-config";
 import {doc, setDoc, getDoc, updateDoc, arrayUnion} from "firebase/firestore"
 import {getUid} from "./auth-service";
 
-export const addUserToDB = async (name, email, tel_number, fb_link, avatar_url) => {
+export const addUserToDB = async (userObject) => {
     const uid = await getUid();
     const ref = doc(db, 'users', uid);
-    await setDoc(ref, {
-        name,
-        email,
-        tel_number,
-        fb_link,
-        avatar_url
-    });
+    await setDoc(ref, userObject);
 };
 
 export const getInfo = async (db_path, db_id, db_field) => {
@@ -37,7 +31,7 @@ export const addInfo = async (new_post, db_path, db_id, db_field) => {
 
 export const updateField = async (new_info, db_path, db_id, db_field) => {
     const ref = doc(db, db_path, db_id);
-    await updateDoc(ref, {[db_field]: arrayUnion(new_info)});
+    await updateDoc(ref, {[db_field]: new_info});
 };
 
 export const updateInfo = async (updated_data, db_path, db_id, db_field) => {
@@ -55,6 +49,11 @@ export const getDefaultAvatarURL = async () => {
     return await getDownloadURL(ref(storage, 'images/default-avatar.png'))
         .catch(error => error);
 };
+
+export const getAvatarURL = async (uid)=>{
+    return await getDownloadURL(ref(storage,`users/${uid}/images/avatar`))
+        .catch(error => error);
+}
 
 export const getImageURL = async (user_id, file_name) => {
     return await getDownloadURL(ref(storage, `users/${user_id}/images/${file_name}`))
