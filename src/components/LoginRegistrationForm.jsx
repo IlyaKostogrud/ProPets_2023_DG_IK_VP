@@ -27,7 +27,8 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
         if (isResponseWithError(response)) return;
 
-        sessionStorage.setItem('uid', await getUid());
+        const uid = await getUid();
+        sessionStorage.setItem('uid', uid);
         dispatch(changeDisplay(whatToRenderNext));
         dispatch(changeState(false));
     };
