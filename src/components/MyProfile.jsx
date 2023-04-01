@@ -3,24 +3,46 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {HOME, home_page} from "../utils/constants";
 import {Link} from "react-router-dom";
-import {fetchNewAvatar} from "../store/userInfoSlice";
+import {fetchNewAvatar, fetchUpdatedUser} from "../store/userInfoSlice";
 
 const MyProfile = () => {
     const userInfo = useSelector(state => state.userInfo.user);
 
     const [name, setName] = useState(userInfo.name);
     const [email, setEmail] = useState(userInfo.email);
-    const [phone, setPhone] = useState(userInfo.tel_number);
-    const [fbLink, setFbLink] = useState(userInfo.fb_link);
+    const [tel_number, setTel_number] = useState(userInfo.tel_number);
+    const [fb_link, setFb_link] = useState(userInfo.fb_link);
 
     const [changeName, setChangeName] = useState(false);
+
+    const [proceed, setProceed] = useState(true);
 
     const dispatch = useDispatch();
 
     const handleOnChangeNewAvatar = async (event) => {
-        // const temp = event.target.files[0];
-        // dispatch(fetchNewAvatar(temp));
+        const temp = event.target.files[0];
+        dispatch(fetchNewAvatar(temp));
+    };
+
+    const handleOnClickSaveChanges = async () => {
+        setProceed(true);
+        const temp = {name, email, tel_number, fb_link, avatar_url: userInfo.avatar_url};
+        if (compareObjects(userInfo, temp)) {
+            setProceed(false);
+            console.log('return from compare')
+            return;
+        }
+        dispatch(fetchUpdatedUser(temp));
+        dispatch(changeDisplay(HOME));
     }
+
+    const compareObjects = (obj1, obj2) => {
+        for (let field in obj1) {
+            if (obj1[field] !== obj2[field])
+                return false;
+        }
+        return true;
+    };
 
     return (
         <div className={'my-profile'}>
@@ -32,14 +54,15 @@ const MyProfile = () => {
             <div>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type={'email'}
                        placeholder={'helenjohnson@gmail.com'}/>
-                <input value={phone} onChange={(e) => setPhone(e.target.value)} type={'tel'}
+                <input value={tel_number} onChange={(e) => setTel_number(e.target.value)} type={'tel'}
                        placeholder={'000-000-00-00'}/>
-                <input value={fbLink} onChange={(e) => setFbLink(e.target.value)} type={'text'}
+                <input value={fb_link} onChange={(e) => setFb_link(e.target.value)} type={'text'}
                        placeholder={'https://facebook.com/anna.smith908430'}/>
                 <Link to={home_page}>
                     <button onClick={() => dispatch(changeDisplay(HOME))}>Cancel</button>
-                    <button onClick={() => dispatch(changeDisplay(HOME))}>Save changes</button>
+                    <button onClick={handleOnClickSaveChanges}>Save changes</button>
                 </Link>
+                {proceed || <p>Input something new!</p>}
             </div>
         </div>
     );
