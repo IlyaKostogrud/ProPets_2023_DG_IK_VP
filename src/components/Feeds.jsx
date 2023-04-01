@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {
-    ADD_NEW, add_new_page,
+    ADD_NEW, add_new_page, base_url,
     FAVORITES, favourites_page,
     FOSTERING, fostering_page,
     FOUND, found_feed_page,
@@ -22,15 +22,13 @@ import Profile from "./Profile";
 import LostFillingForm from "./LostFillingForm";
 import FoundFillingForm from "./FoundFillingForm";
 import {Route, Routes} from "react-router-dom";
-/*import ErrorPage from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/components/ErrorPage";
-import {homePage} from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/utils/constants";
-import Home from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/components/Home";*/
+import ErrorPage from "./ErrorPage";
+import WelcomePage from "./WelcomePage";
 
 const Feeds = () => {
     return(
-        <Routes>
-            {/*['/', homePage, '/:heroId', `${homePage}/:heroId`].map(path =>
-                <Route path={path} key={path} element={<Home changeHero={props.changeHero}/>}/>)*/}
+        <Routes>//localhost:3000
+            <Route path={base_url} element={<WelcomePage/>}/>)}
             <Route path={lost_feed_page} element={<LostFeed/>}/>
             <Route path={lost_form_page} element={<LostFillingForm/>}/>
             <Route path={found_feed_page} element={<FoundFeed/>}/>
@@ -43,8 +41,7 @@ const Feeds = () => {
             <Route path={add_new_page} element={<AddNew/>}/>
             <Route path={profile_page} element={<Profile/>}/>
             <Route path={home_page} element={<HomeServices title={'HomeServices Page'} list_type={'home'}/>}/>
-
-            {/*<Route path={'*'} element={<ErrorPage/>}/>*/}
+            <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>
     )
     /*const {display} = useSelector(state => state.mainDisplay);
