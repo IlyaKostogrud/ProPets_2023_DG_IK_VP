@@ -7,7 +7,7 @@
 /*  justify-content: center;*/
 /*}*/
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,7 @@
     box-shadow: 0px 3px 6px #00000029;
 }
 
-button{
+button {
     border-radius: 15px;
 }
 
@@ -30,49 +30,49 @@ button{
     align-items: center;
 }
 
-.welcome-page-wrap-img1{
+.welcome-page-wrap-img1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70vh;
 }
 
-.welcome-page-img1{
+.welcome-page-img1 {
     height: 90%;
 }
 
-.welcome-page-greeting-line{
+.welcome-page-greeting-line {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #669885;
 }
 
-.welcome-page-services-offered-line{
+.welcome-page-services-offered-line {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.welcome-page-wrap-img2{
+.welcome-page-wrap-img2 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50vh;
 }
 
-.welcome-page-img2{
+.welcome-page-img2 {
     height: 90%;
 }
 
-.welcome-page-coming-soon-line{
+.welcome-page-coming-soon-line {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #FF6F61;
 }
 
-.welcome-page-contacts-line{
+.welcome-page-contacts-line {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,6 +82,12 @@ button{
 .loginRegistrationForm-fields {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+}
+.login-registration-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button-container {
@@ -98,11 +104,13 @@ button{
     flex-direction: column;
 }
 
-.avatar {
-    height: 90%;
+.author_avatar {
+    width: 100%;
+    max-width: 40px;
+    min-width: 15px;
 }
 
-.main-body{
+.main-body {
     height: 90vh;
 }
 
@@ -111,10 +119,34 @@ button{
     flex-direction: column;
 }
 
-*.Lost_form .form_main{
+*.Lost_form .form_main {
     width: fit-content;
 }
 
 .post-home{
+    padding: 8px;
     box-shadow: 0px 3px 6px #00000029;
+}
+
+.post-image{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-image>img{
+    max-height: 200px;
+    max-width: 100%;
+}
+
+.addNew{
+
+}
+
+.favorite-star>span{
+    user-select: none;
+    color: #669885;
+    font-size: 30px;
+    cursor: pointer;
 }

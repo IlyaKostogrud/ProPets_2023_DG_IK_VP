@@ -2,21 +2,25 @@ import React, {useState} from 'react';
 import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
 import Lost_post from "../objects/lost_post";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {LOST} from "../utils/constants";
+import {LOST, FOUND, messages} from "../utils/constants";
 import {useDispatch} from "react-redux";
 
 const Preview = ({changePreview, fields}) => {
     const [checked, setChecked] = useState(true);
     const dispatch = useDispatch();
+    const message = fields.post_type === "lost" ? messages[0] : messages[1]
+
 
     function clickPublish() {
         if (document.getElementById("fb").checked === true) {
             console.log("Sent to facebook")
         }
         let post = Lost_post(fields)
-        console.log(post)
         post.publish()
-        dispatch(changeDisplay(LOST))
+        if(fields.post_type === "lost")
+            dispatch(changeDisplay(LOST))
+        else
+            dispatch(changeDisplay(FOUND))
 
     }
 
@@ -40,9 +44,7 @@ const Preview = ({changePreview, fields}) => {
                 </div>
             </div>
             <div className="Preview_footer">
-                <h2>Fingers crossed. We wish your fluffy to be found as soon as possible.
-                    Your post will expire in two weeks. To make it active again follow the instruction you'll get in
-                    email.</h2>
+                <h2>{message}</h2>
                 <label htmlFor="fb">Share to Facebook</label>
                 <input type="checkbox" id="fb" name="fb" defaultChecked={checked}
                        onChange={() => setChecked(!checked)}/>

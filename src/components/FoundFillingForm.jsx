@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import LostForm from "./LostForm";
 import Preview from "./Preview";
+import FoundForm from "./FoundForm";
 
 
-const LostFillingForm = () => {
+const FoundFillingForm = () => {
     const [type, setType] = useState("dog")
     const [sex, setSex] = useState("male")
     const [breed, setBreed] = useState("")
@@ -17,7 +17,7 @@ const LostFillingForm = () => {
     const [phone, setPhone] = useState("")
     const [email, setEmail] = useState("")
     const [facebook_profile, setFacebook_profile] = useState("")
-    const [post_type, setPost_type] = useState("lost")
+    const [post_type, setPost_type] = useState("found")
 
     const [preview, setPreview] = useState(false);
 
@@ -29,7 +29,7 @@ const LostFillingForm = () => {
     }
 
     return preview ? <Preview changePreview={changePreview} fields={fields}/> :
-            <LostForm changePreview={changePreview} setters={setters} fields={fields}/>
+            <FoundForm changePreview={changePreview} setters={setters} fields={fields}/>
 };
 
-export default LostFillingForm;
+export default FoundFillingForm;

@@ -5,7 +5,7 @@ import React, {useEffect} from "react";
 import {drop, allowDrop} from "../utils/drag&drop"
 import {lorem_ipsum} from "../utils/constants"
 
-const LostForm = ({setters, fields, changePreview}) => {
+const FoundForm = ({setters, fields, changePreview}) => {
 
     useEffect(() => {
         if (fields.photo) {
@@ -18,7 +18,7 @@ const LostForm = ({setters, fields, changePreview}) => {
 
     return (
         <div className="Lost_form">
-            <h1>Lost your buddy? Keep calm and complete the form</h1>
+            <h1>Found a pet? Please complete the form to help.</h1>
             <form className="form_main">
                 <label htmlFor="type">Type:</label>
                 <select value={fields.type} name="type" id="type" onChange={(e) => setters.setType(e.target.value)}>
@@ -82,4 +82,4 @@ const LostForm = ({setters, fields, changePreview}) => {
     )
 }
 
-export default LostForm;
+export default FoundForm;

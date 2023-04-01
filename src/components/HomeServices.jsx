@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
+import PostListHome from "./PostListHome";
 import {getInfo} from "../firebase/propets-service";
-import PostItemHome from "./PostItemHome";
 
-const Favorites = () => {
+const HomeServices = ({title, list_type}) => {
     const [state, setState] = useState({
         posts: [],
         favorites: [],
@@ -16,8 +16,9 @@ const Favorites = () => {
     useEffect(() => {
         (async function () {
             const uid = sessionStorage.getItem('uid');
-            const {feed_array} = await getInfo('feedLF', 'mainFeed', 'feed_array');
-            const {fav_array} = await getInfo('favorites', uid, 'fav_array');
+            const {feed_array} = await getInfo('feedLF', 'mainFeed','feed_array');
+            const {fav_array} = await getInfo('favorites', uid,'fav_array');
+            console.log(fav_array);
             setState({
                 posts: feed_array.reverse(),
                 favorites: fav_array,
@@ -29,16 +30,9 @@ const Favorites = () => {
 
     return (state.loading ||
         <div>
-            <h2 style={{textAlign: 'center'}}>Favorites</h2>
-            {state.posts.map(post => {
-                if (state.favorites.includes(post.post_id))
-                    return <PostItemHome post={post} favorites={state.favorites} updateFavorites={updateFavorites}
-                                         key={post.post_id}/>
-                else
-                    return null;
-            })}
+            <PostListHome posts={state.posts} favorites={state.favorites} updateFavorites={updateFavorites} title={title} list_type={list_type}/>
         </div>
     );
 };
 
-export default Favorites;
+export default HomeServices;
