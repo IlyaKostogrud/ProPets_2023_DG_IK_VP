@@ -16,7 +16,6 @@ const Preview = ({changePreview, fields}) => {
             console.log("Sent to facebook")
         }
         let post = Lost_post(fields)
-        console.log(post)
         post.publish()
         if(fields.post_type === "lost")
             dispatch(changeDisplay(LOST))
