@@ -27,7 +27,8 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
         if (isResponseWithError(response)) return;
 
-        sessionStorage.setItem('uid', await getUid());
+        const uid = await getUid();
+        sessionStorage.setItem('uid', uid);
         dispatch(changeDisplay(whatToRenderNext));
         dispatch(changeState(false));
     };
@@ -47,7 +48,9 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
             const avatar_url = await getDefaultAvatarURL();
             const response = await registration(email, password);
             if (isResponseWithError(response)) return;
-            await addUserToDB(name, email, '000-000-00-00', '', avatar_url);
+
+            const temp = {name, email, tel_number: '000-000-00-00', fb_link: '', avatar_url};
+            await addUserToDB(temp);
             return response;
         }
         setError('Passwords don\'t match');

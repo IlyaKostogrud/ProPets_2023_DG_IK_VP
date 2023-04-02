@@ -1,5 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {addUserToDB, getDefaultAvatarURL, getInfo} from "../firebase/propets-service";
+import {
+    addUserToDB,
+    getAvatarURL,
+    getDefaultAvatarURL,
+    getInfo,
+    removeAvatar, updateField,
+    uploadImage
+} from "../firebase/propets-service";
 
 const initialState = {
     user: {},
@@ -20,12 +27,12 @@ export const fetchUser = createAsyncThunk('userInfo/fetchUser',
     }
 );
 
-// ВСПОМНИ, ЧТО ПРИДУМАЛ НОЧЬЮ И ПЕРЕДЕЛАЙ ВСЁ ПОД ПАРАЛЛЕЛЬНОЕ ИЗМЕНЕНИЕ ПОЛЕЙ В РЕДАКСЕ И ПОЛЕЙ В ФАЙРБЕЙЗ
-
 export const fetchUpdatedUser = createAsyncThunk('userInfo/fetchUpdatedUser',
     async (userData, {rejectWithValue, dispatch}) => {
         try {
-            const response = await addUserToDB({...userData})
+            const uid = sessionStorage.getItem('uid');
+            await addUserToDB(userData);
+            const response = await getInfo('users', uid);
             dispatch(addUser(response));
         } catch (error) {
             console.log(error);
@@ -33,23 +40,29 @@ export const fetchUpdatedUser = createAsyncThunk('userInfo/fetchUpdatedUser',
         }
     });
 
-// export const fetchNewAvatar = createAsyncThunk('userInfo/fetchNewAvatar',
-//     async (picture, {rejectWithValue, dispatch, getState}) => {
-//         try {
-//             const uid = sessionStorage.getItem('uid');
-//             const compare_with = await getDefaultAvatarURL();
-//             getState().
-//             if(g)
-//         } catch (error) {
-//             console.log(error);
-//             rejectWithValue(error.message);
-//         }
-//     });
+export const fetchNewAvatar = createAsyncThunk('userInfo/fetchNewAvatar',
+    async (picture, {rejectWithValue, dispatch, getState}) => {
+        try {
+            const uid = sessionStorage.getItem('uid');
+            const temp = getState().userInfo.user.avatar_url;
+            const compare_with = await getDefaultAvatarURL();
+            if (temp !== compare_with) {
+                await removeAvatar(uid);
+            }
+            await uploadImage(picture, uid, 'avatar');
+            const response = await getAvatarURL(uid);
+            await updateField(response, 'users', uid, 'avatar_url');
+            dispatch(updateUserAvatar(response));
+        } catch (error) {
+            console.log(error);
+            rejectWithValue(error.message);
+        }
+    });
 
 const setLoading = (state) => {
     state.status = 'loading';
     state.error = null;
-}
+};
 
 const setError = (state, action) => {
     state.status = 'rejected';
@@ -64,10 +77,10 @@ const userInfoSlice = createSlice({
             state.status = 'resolved';
             state.user = {...action.payload}
         },
-        updateUserAvatar(state,action){
+        updateUserAvatar(state, action) {
             state.status = 'resolved';
             state.user.avatar_url = action.payload;
-        }
+        },
     },
     // extraReducers: {
     //     [fetchUser.pending]: (state) => {
@@ -89,5 +102,5 @@ const userInfoSlice = createSlice({
     }
 });
 
-export const {addUser} = userInfoSlice.actions;
+export const {addUser, updateUserAvatar} = userInfoSlice.actions;
 export default userInfoSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {
-    ADD_NEW, add_new_page,
+    ADD_NEW, add_new_page, base_url,
     FAVORITES, favourites_page,
     FOSTERING, fostering_page,
     FOUND, found_feed_page,
@@ -13,27 +13,24 @@ import {
     VET_HELP, vet_help_page,
     WALKING, walking_page
 } from "../utils/constants";
-import LostFeed from "./LostFeed";
 import Favorites from "./Favorites";
 import HomeServices from "./HomeServices";
 import AddNew from "./AddNew";
-import FoundFeed from "./FoundFeed";
 import Profile from "./Profile";
 import LostFillingForm from "./LostFillingForm";
 import FoundFillingForm from "./FoundFillingForm";
 import {Route, Routes} from "react-router-dom";
-/*import ErrorPage from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/components/ErrorPage";
-import {homePage} from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/utils/constants";
-import Home from "../../../../../WebstormProjects/star-wars-react-masa-router5_3/src/components/Home";*/
+import ErrorPage from "./ErrorPage";
+import WelcomePage from "./WelcomePage";
+import LostFoundFeed from "./LostFoundFeed";
 
 const Feeds = () => {
     return(
-        <Routes>
-            {/*['/', homePage, '/:heroId', `${homePage}/:heroId`].map(path =>
-                <Route path={path} key={path} element={<Home changeHero={props.changeHero}/>}/>)*/}
-            <Route path={lost_feed_page} element={<LostFeed/>}/>
+        <Routes>//localhost:3000
+            <Route path={base_url} element={<WelcomePage/>}/>)}
+            <Route path={lost_feed_page} element={<LostFoundFeed title={'Lost'} list_type={'lost'}/>}/>
             <Route path={lost_form_page} element={<LostFillingForm/>}/>
-            <Route path={found_feed_page} element={<FoundFeed/>}/>
+            <Route path={found_feed_page} element={<LostFoundFeed title={'Found'} list_type={'found'}/>}/>
             <Route path={found_form_page} element={<FoundFillingForm/>}/>
             <Route path={hotels_page} element={<HomeServices title={'Hotels'} list_type={'hotels'}/>}/>
             <Route path={walking_page} element={<HomeServices title={'Walking'} list_type={'walking'}/>}/>
@@ -43,8 +40,7 @@ const Feeds = () => {
             <Route path={add_new_page} element={<AddNew/>}/>
             <Route path={profile_page} element={<Profile/>}/>
             <Route path={home_page} element={<HomeServices title={'HomeServices Page'} list_type={'home'}/>}/>
-
-            {/*<Route path={'*'} element={<ErrorPage/>}/>*/}
+            <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>
     )
     /*const {display} = useSelector(state => state.mainDisplay);

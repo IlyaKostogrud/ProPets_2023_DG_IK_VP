@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import PostListHome from "./PostListHome";
 import {getInfo} from "../firebase/propets-service";
+import PostListHome from "./PostListHome";
+import PostListLostFound from "./PostListLostFound";
 
-const HomeServices = ({title, list_type}) => {
+const LostFoundFeed = ({title, list_type}) => {
     const [state, setState] = useState({
         posts: [],
         favorites: [],
@@ -29,9 +30,9 @@ const HomeServices = ({title, list_type}) => {
 
     return (state.loading ||
         <div>
-            <PostListHome posts={state.posts} favorites={state.favorites} updateFavorites={updateFavorites} title={title} list_type={list_type}/>
+            <PostListLostFound posts={state.posts} favorites={state.favorites} updateFavorites={updateFavorites} title={title} list_type={list_type}/>
         </div>
     );
 };
 
-export default HomeServices;
+export default LostFoundFeed;

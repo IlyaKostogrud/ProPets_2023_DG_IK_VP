@@ -7,13 +7,12 @@ import {
     FOUND,
     FOUND_FORM,
     found_form_page,
-    HOME,
+    HOME, home_page,
     HOTELS,
     LOST,
     LOST_FORM,
     lost_form_page,
     SERVICES,
-    sign_in_page,
     VET_HELP,
     WALKING
 } from "../utils/constants";
@@ -32,7 +31,7 @@ const HeaderButtons = ({handleClickProceed}) => {
     switch (display) {
         case '':
             return (
-                <Link to={sign_in_page}>
+                <Link to={home_page}>
                     <button onClick={handleClickSignIn}>Sign In</button>
                 </Link>
             );
