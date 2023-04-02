@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {HOME, home_page} from "../utils/constants";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {fetchNewAvatar, fetchUpdatedUser} from "../store/userInfoSlice";
 
 const MyProfile = () => {
@@ -19,6 +19,8 @@ const MyProfile = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const handleOnChangeNewAvatar = async (event) => {
         const temp = event.target.files[0];
         dispatch(fetchNewAvatar(temp));
@@ -34,6 +36,7 @@ const MyProfile = () => {
         }
         dispatch(fetchUpdatedUser(temp));
         dispatch(changeDisplay(HOME));
+        navigate(home_page);
     }
 
     const compareObjects = (obj1, obj2) => {
@@ -60,8 +63,8 @@ const MyProfile = () => {
                        placeholder={'https://facebook.com/anna.smith908430'}/>
                 <Link to={home_page}>
                     <button onClick={() => dispatch(changeDisplay(HOME))}>Cancel</button>
-                    <button onClick={handleOnClickSaveChanges}>Save changes</button>
                 </Link>
+                <button onClick={handleOnClickSaveChanges}>Save changes</button>
                 {proceed || <p>Input something new!</p>}
             </div>
         </div>
