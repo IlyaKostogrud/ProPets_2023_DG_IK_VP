@@ -168,3 +168,13 @@ button {
     max-height: 250px;
     max-width: 100%;
 }
+
+.adverts-image-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adverts-image{
+    max-width: 100%;
+}

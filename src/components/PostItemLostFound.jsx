@@ -49,7 +49,7 @@ const PostItemLostFound = (props) => {
 
                 <div className={'col-7 container'}>
                     <div className={'row pet-type-breed'}>
-                        <h3>{props.post.type}, {props.post.breed}</h3>
+                        <h3>({props.post.post_type}) {props.post.type}, {props.post.breed}</h3>
                     </div>
 
                     <div className={'row'}>
