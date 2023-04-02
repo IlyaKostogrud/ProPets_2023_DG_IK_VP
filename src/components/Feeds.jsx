@@ -1,17 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {
-    ADD_NEW, add_new_page, base_url,
-    FAVORITES, favourites_page,
-    FOSTERING, fostering_page,
-    FOUND, found_feed_page,
-    FOUND_FORM, found_form_page, home_page,
-    HOTELS, hotels_page,
-    LOST, lost_feed_page,
-    LOST_FORM, lost_form_page,
-    PROFILE, profile_page,
-    VET_HELP, vet_help_page,
-    WALKING, walking_page
+    //ADD_NEW,
+    add_new_page,
+    base_url,
+    //FAVORITES,
+    favourites_page,
+    //FOSTERING,
+    fostering_page,
+    //FOUND,
+    found_feed_page,
+    //FOUND_FORM,
+    found_form_page, home_page,
+    //HOTELS,
+    hotels_page,
+    //LOST,
+    lost_feed_page,
+    //LOST_FORM,
+    lost_form_page, preview_page,
+    //PROFILE,
+    profile_page,
+    //VET_HELP,
+    vet_help_page,
+    //WALKING,
+    walking_page
 } from "../utils/constants";
 import Favorites from "./Favorites";
 import HomeServices from "./HomeServices";
@@ -23,11 +35,13 @@ import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import WelcomePage from "./WelcomePage";
 import LostFoundFeed from "./LostFoundFeed";
+import Preview from "./Preview";
 
 const Feeds = () => {
+    //const [preview, setPreview] = useState(false);
     return(
-        <Routes>//localhost:3000
-            <Route path={base_url} element={<WelcomePage/>}/>)}
+        <Routes>//localhost:3000, //localhost:3000/#
+            {/*<Route path={base_url} element={<WelcomePage/>}/>*/}
             <Route path={lost_feed_page} element={<LostFoundFeed title={'Lost'} list_type={'lost'}/>}/>
             <Route path={lost_form_page} element={<LostFillingForm/>}/>
             <Route path={found_feed_page} element={<LostFoundFeed title={'Found'} list_type={'found'}/>}/>
@@ -40,6 +54,7 @@ const Feeds = () => {
             <Route path={add_new_page} element={<AddNew/>}/>
             <Route path={profile_page} element={<Profile/>}/>
             <Route path={home_page} element={<HomeServices title={'HomeServices Page'} list_type={'home'}/>}/>
+            {/*<Route path={preview_page} element={<Preview changePreview={setPreview(false)} fields={null}/>}/>*/}
             <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>
     )

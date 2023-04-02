@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {HOME, home_page} from "../utils/constants";
 import {Link, useNavigate} from "react-router-dom";
 import {fetchNewAvatar, fetchUpdatedUser} from "../store/userInfoSlice";
+import {/*HOME,*/ home_page} from "../utils/constants";
 
 const MyProfile = () => {
     const userInfo = useSelector(state => state.userInfo.user);
@@ -35,7 +35,7 @@ const MyProfile = () => {
             return;
         }
         dispatch(fetchUpdatedUser(temp));
-        dispatch(changeDisplay(HOME));
+        //dispatch(changeDisplay(HOME));
         navigate(home_page);
     }
 
@@ -62,7 +62,8 @@ const MyProfile = () => {
                 <input value={fb_link} onChange={(e) => setFb_link(e.target.value)} type={'text'}
                        placeholder={'https://facebook.com/anna.smith908430'}/>
                 <Link to={home_page}>
-                    <button onClick={() => dispatch(changeDisplay(HOME))}>Cancel</button>
+                    <button /*onClick={() => dispatch(changeDisplay(HOME))}*/>Cancel</button>
+                    <button /*onClick={() => dispatch(changeDisplay(HOME))}*/>Save changes</button>
                 </Link>
                 <button onClick={handleOnClickSaveChanges}>Save changes</button>
                 {proceed || <p>Input something new!</p>}

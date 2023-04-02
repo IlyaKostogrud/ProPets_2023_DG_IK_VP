@@ -1,47 +1,50 @@
 import React, {useState} from 'react';
 import {
-    FOSTERING,
+    //FOSTERING,
     fostering_page,
-    HOTELS,
+    //HOTELS,
     hotels_page,
-    isDisplayArray,
-    VET_HELP, vet_help_page,
-    WALKING,
+    //isDisplayArray,
+    services_page,
+    //VET_HELP,
+    vet_help_page,
+    //WALKING,
     walking_page
 } from "../utils/constants";
-import {useDispatch, useSelector} from "react-redux";
-import {changeDisplay} from "../store/mainDisplaySlice";
-import {Link} from "react-router-dom";
+//import {useDispatch, useSelector} from "react-redux";
+//import {changeDisplay} from "../store/mainDisplaySlice";
+import {Link, useLocation} from "react-router-dom";
 
 const ServicesButton = () => {
-    const {display} = useSelector(state => state.mainDisplay);
-    const dispatch = useDispatch();
+    const location = useLocation().pathname
+    //const {display} = useSelector(state => state.mainDisplay);
+    //const dispatch = useDispatch();
 
     const [buttonsGroup, setButtonsGroup] = useState(false);
 
     const displayButtons = () =>{
-        return isDisabled() || buttonsGroup;
+        return location === `${services_page}/*`/*isDisabled()*/ || buttonsGroup;
     };
 
-    const isDisabled = () =>{
+    /*const isDisabled = () =>{
         return isDisplayArray.includes(display);
-    };
+    };*/
 
     return (
         <>
-            <button disabled={isDisabled()} onClick={() => setButtonsGroup(!buttonsGroup)}>Services</button>
+            <button disabled={location === `${services_page}/*`/*isDisabled()*/} onClick={() => setButtonsGroup(!buttonsGroup)}>Services</button>
             {displayButtons() && <div className={'services-buttons-group'}>
                 <Link to={hotels_page}>
-                    <button disabled={display === HOTELS} onClick={() => dispatch(changeDisplay(HOTELS))}>Hotels</button>
+                    <button disabled={location === hotels_page} /*onClick={() => dispatch(changeDisplay(HOTELS))}*/>Hotels</button>
                 </Link>
                 <Link to={walking_page}>
-                    <button disabled={display === WALKING} onClick={() => dispatch(changeDisplay(WALKING))}>Walking</button>
+                    <button disabled={location === walking_page} /*onClick={() => dispatch(changeDisplay(WALKING))}*/>Walking</button>
                 </Link>
                 <Link to={fostering_page}>
-                    <button disabled={display === FOSTERING} onClick={() => dispatch(changeDisplay(FOSTERING))}>Fostering</button>
+                    <button disabled={location === fostering_page} /*onClick={() => dispatch(changeDisplay(FOSTERING))}*/>Fostering</button>
                 </Link>
                 <Link to={vet_help_page}>
-                    <button disabled={display === VET_HELP} onClick={() => dispatch(changeDisplay(VET_HELP))}>VetHelp</button>
+                    <button disabled={location === vet_help_page} /*onClick={() => dispatch(changeDisplay(VET_HELP))}*/>VetHelp</button>
                 </Link>
             </div>}
         </>
