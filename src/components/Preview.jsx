@@ -1,28 +1,61 @@
 import React, {useState} from 'react';
-import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
-import Lost_post from "../objects/lost_post";
 import {changeDisplay} from "../store/mainDisplaySlice";
-import {LOST, FOUND, messages} from "../utils/constants";
+import {
+    LOST,
+    FOUND,
+    messages,
+    path_feedLF,
+    id_mainFeed,
+    field_feed_array,
+    lost_feed_page,
+    found_feed_page
+} from "../utils/constants";
 import {useDispatch} from "react-redux";
+import {addInfo, uploadImage} from "../firebase/propets-service";
+import {useNavigate} from "react-router-dom";
 
-const Preview = ({changePreview, fields}) => {
+const Preview = ({changePreview, fields, name, avatar_url}) => {
     const [checked, setChecked] = useState(true);
     const dispatch = useDispatch();
-    const message = fields.post_type === "lost" ? messages[0] : messages[1]
+    const message = fields.post_type === "lost" ? messages[0] : messages[1];
 
+    const navigate = useNavigate();
 
-    function clickPublish() {
+    const clickPublish = async () => {
         if (document.getElementById("fb").checked === true) {
             console.log("Sent to facebook")
         }
-        let post = Lost_post(fields)
-        post.publish()
-        if(fields.post_type === "lost")
-            dispatch(changeDisplay(LOST))
+        const post_date = Date.now();
+        const uid = sessionStorage.getItem('uid');
+        const fileName = `${uid}_${post_date}`;
+        await uploadImage(fields.photo, uid, fileName);
+        const temp = {
+            post_date: post_date,
+            post_id: post_date,
+            post_pics: [fileName],
+            post_type: fields.post_type,
+            post_author_id: uid,
+            type: fields.type,
+            sex: fields.sex,
+            breed: fields.breed,
+            color: fields.color,
+            height: fields.height,
+            distinctive_features: fields.distinctive_features,
+            description: fields.description,
+            location: fields.location,
+            phone: fields.phone,
+            email: fields.email,
+            facebook_profile: fields.facebook_profile
+        }
+        await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
+        if(fields.post_type === "lost"){
+            navigate(lost_feed_page);
+            dispatch(changeDisplay(LOST));
+        }
         else
-            dispatch(changeDisplay(FOUND))
-
-    }
+            navigate(found_feed_page);
+            dispatch(changeDisplay(FOUND));
+    };
 
     return (
         <div className="Preview">
@@ -38,8 +71,8 @@ const Preview = ({changePreview, fields}) => {
                 <hr/>
                 <p>{fields.location}</p>
                 <div className="post_footer">
-                    <img src={profile} alt="pfp"/>
-                    <p>John Goodboi</p>
+                    <img className={'author_avatar'} src={avatar_url} alt="pfp"/>
+                    <p>{name}</p>
                     <p>{Date()}</p>
                 </div>
             </div>
@@ -54,7 +87,7 @@ const Preview = ({changePreview, fields}) => {
             <p className="Fine_print">By clicking "Publish" you agree to us processing your information in accordance
                 with these terms</p>
         </div>
-    )
-}
+    );
+};
 
 export default Preview
