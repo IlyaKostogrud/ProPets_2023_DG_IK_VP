@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import {changeDisplay} from "../store/mainDisplaySlice";
 import {
-    LOST,
-    FOUND,
+    //LOST,
+    //FOUND,
     messages,
     path_feedLF,
     id_mainFeed,
@@ -10,16 +9,19 @@ import {
     lost_feed_page,
     found_feed_page
 } from "../utils/constants";
-import {useDispatch} from "react-redux";
 import {addInfo, uploadImage} from "../firebase/propets-service";
-import {useNavigate} from "react-router-dom";
-
+//import {useNavigate} from "react-router-dom";
+import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
+import Lost_post from "../objects/lost_post";
+//import {changeDisplay} from "../store/mainDisplaySlice";
+//import {useDispatch} from "react-redux";
+import {Link} from "react-router-dom";
 const Preview = ({changePreview, fields, name, avatar_url}) => {
     const [checked, setChecked] = useState(true);
-    const dispatch = useDispatch();
-    const message = fields.post_type === "lost" ? messages[0] : messages[1];
-
-    const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    const message = fields.post_type === "lost" ? messages[0] : messages[1]
+    const link = fields.post_type === "lost" ? lost_feed_page : found_feed_page
+    //const navigate = useNavigate();
 
     const clickPublish = async () => {
         if (document.getElementById("fb").checked === true) {
@@ -48,15 +50,15 @@ const Preview = ({changePreview, fields, name, avatar_url}) => {
             facebook_profile: fields.facebook_profile
         }
         await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
-        if(fields.post_type === "lost"){
+        /*if(fields.post_type === "lost"){
             navigate(lost_feed_page);
-            dispatch(changeDisplay(LOST));
+            //dispatch(changeDisplay(LOST));
         }
         else
             navigate(found_feed_page);
-            dispatch(changeDisplay(FOUND));
+            //dispatch(changeDisplay(FOUND));
+         */
     };
-
     return (
         <div className="Preview">
             <h2> Preview and Publish. Please share the post to your FB to be more effective.</h2>
@@ -82,7 +84,9 @@ const Preview = ({changePreview, fields, name, avatar_url}) => {
                 <input type="checkbox" id="fb" name="fb" defaultChecked={checked}
                        onChange={() => setChecked(!checked)}/>
                 <input type="button" value="Edit" onClick={() => changePreview()}/>
-                <input type="button" value="Publish" onClick={() => clickPublish()}/>
+                <Link to={link}>
+                    <input type="button" value="Publish" onClick={() => clickPublish()}/>
+                </Link>
             </div>
             <p className="Fine_print">By clicking "Publish" you agree to us processing your information in accordance
                 with these terms</p>

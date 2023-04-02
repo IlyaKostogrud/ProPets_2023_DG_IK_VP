@@ -2,7 +2,8 @@ import dropsite from "../images/Group 43.svg"
 import upload from "../images/upload.png"
 import React, {useEffect} from "react";
 import {drop, allowDrop} from "../utils/drag&drop"
-import {lorem_ipsum} from "../utils/constants"
+import {lorem_ipsum, preview_page} from "../utils/constants"
+import {Link} from "react-router-dom";
 
 const LostForm = ({setters, fields, changePreview, name, avatar_url}) => {
 
@@ -74,7 +75,9 @@ const LostForm = ({setters, fields, changePreview, name, avatar_url}) => {
                     <br/>
                     <img className={'author_avatar'} src={avatar_url} alt="pfp"/>
                     <p>{name}</p>
-                    <input type="submit" value="Publish" onClick={() => changePreview()}/>
+                    {/*<Link to={preview_page}>*/}
+                        <input type="submit" value="Publish" onClick={() => changePreview()}/>
+                    {/*</Link>*/}
                 </div>
             </form>
         </div>
