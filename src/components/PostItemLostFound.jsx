@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {addInfo, getImageURL, getInfo, updateInfo} from "../firebase/propets-service";
 import {path_users} from "../utils/constants";
+import DeleteButton from "./DeleteButton";
 
 const PostItemLostFound = (props) => {
     const [state, setState] = useState({
         picture_url: '',
         author_name: '',
         post_picture_url: '',
-        star: false
+        star: false,
+        user_owns: false
     });
 
     useEffect(() => {
@@ -20,7 +22,8 @@ const PostItemLostFound = (props) => {
                 picture_url: info.avatar_url,
                 author_name: info.name,
                 post_picture_url: picture,
-                star: temp
+                star: temp,
+                user_owns: uid === sessionStorage.getItem('uid')
             });
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -51,7 +54,7 @@ const PostItemLostFound = (props) => {
                     <div className={'row pet-type-breed'}>
                         <h3>({props.post.post_type}) {props.post.type}, {props.post.breed}</h3>
                     </div>
-
+                    {state.user_owns && <DeleteButton posts={props.posts} post_id={props.post.post_id}/>}
                     <div className={'row'}>
                         <div className={'col-4'}>
                             <div>Color: {props.post.color}</div>

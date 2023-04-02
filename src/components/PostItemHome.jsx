@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {addInfo, getImageURL, getInfo, updateInfo} from "../firebase/propets-service";
 import {path_users} from "../utils/constants";
+import DeleteButton from "./DeleteButton";
 
 const PostItemHome = (props) => {
     const [state, setState] = useState({
         picture_url: '',
         author_name: '',
         post_picture_url: '',
-        star: false
+        star: false,
+        user_owns: false
     });
 
     useEffect(() => {
@@ -20,7 +22,8 @@ const PostItemHome = (props) => {
                 picture_url: info.avatar_url,
                 author_name: info.name,
                 post_picture_url: picture,
-                star: temp
+                star: temp,
+                user_owns: uid === sessionStorage.getItem('uid')
             });
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,7 +51,10 @@ const PostItemHome = (props) => {
                     <img className={'author_avatar'} src={state.picture_url} alt="post_author_avatar_url"/>
                 </div>
                 <div className={'col-11'}>
-                    <div>{state.author_name}</div>
+                    <div>
+                        {state.author_name}
+                        {state.user_owns && <DeleteButton posts={props.posts} post_id={props.post.post_id}/>}
+                    </div>
                     <div className={'post_date'}>{date}</div>
                     <div className={'post-home-service-image-wrap'}>
                         <img src={state.post_picture_url} alt={'post'}/>
