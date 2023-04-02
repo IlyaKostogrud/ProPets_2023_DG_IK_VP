@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
-import {/*useDispatch,*/ useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {field_feed_array, /*HOME,*/ home_page, id_mainFeed, lorem_ipsum, path_feedLF} from "../utils/constants";
-import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
-import upload from "../images/upload.png";
-import {drop, allowDrop} from "../utils/drag&drop";
-//import {changeDisplay} from "../store/mainDisplaySlice";
+
 import {addInfo, uploadImage} from "../firebase/propets-service";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const AddNew = () => {
     //add indicator of where it was click
     const [post_text, setText] = useState("");
     const [post_pics, setPhotos] = useState(null);
     const [post_type, setType] = useState("home");
+
+    const navigate = useNavigate();
     //const dispatch = useDispatch();
     const clickPublish = async (e) => {
         // const post = Feed_post(/*{text, photos}*/)
@@ -31,6 +30,7 @@ const AddNew = () => {
             post_author_id: uid,
         };
         await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
+        navigate(home_page);
         //dispatch(changeDisplay(HOME));
         /*return (
             document.getElementById("e")
@@ -102,9 +102,7 @@ const AddNew = () => {
                     </div>
                     <div className={'col-8'}>{userInfo.name}</div>
                     <div className={'col-2'}>
-                        <Link to={home_page}>
-                            <input type="submit" value={'Publish'} onChange={(e) => clickPublish(e)}/>
-                        </Link>
+                            <button type="button" onClick={clickPublish}>Publish</button>
                     </div>
                 </div>
             </div>
