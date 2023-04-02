@@ -5,7 +5,7 @@ const DeleteButton = ({posts, post_id}) => {
 
     const handleOnClick = async() => {
         const temp = posts.filter((post) => post.post_id !== post_id);
-        await updateInfo(temp,'feedLF','mainFeed','feed_array');
+        await updateInfo(temp.reverse(),'feedLF','mainFeed','feed_array');
     };
 
     return (
