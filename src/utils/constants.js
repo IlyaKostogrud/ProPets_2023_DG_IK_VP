@@ -40,3 +40,5 @@ export const favourites_page = `${base_url}/favourites`
 export const profile_page = `${base_url}/profile`
 export const activities_page = `${base_url}/activities`
 export const preview_page = `${base_url}/preview`
+export const LOST_HEADER1 = 'Lost your buddy? Keep calm and complete the form';
+export const FOUND_HEADER1 = 'Found a pet? Please complete the form to help';

@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {
-    //LOST,
-    //FOUND,
     messages,
     path_feedLF,
     id_mainFeed,
@@ -10,18 +8,12 @@ import {
     found_feed_page
 } from "../utils/constants";
 import {addInfo, uploadImage} from "../firebase/propets-service";
-//import {useNavigate} from "react-router-dom";
-import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
-import Lost_post from "../objects/lost_post";
-//import {changeDisplay} from "../store/mainDisplaySlice";
-//import {useDispatch} from "react-redux";
 import {Link} from "react-router-dom";
+
 const Preview = ({changePreview, fields, name, avatar_url}) => {
     const [checked, setChecked] = useState(true);
-    //const dispatch = useDispatch();
     const message = fields.post_type === "lost" ? messages[0] : messages[1]
     const link = fields.post_type === "lost" ? lost_feed_page : found_feed_page
-    //const navigate = useNavigate();
 
     const clickPublish = async () => {
         if (document.getElementById("fb").checked === true) {
@@ -49,15 +41,8 @@ const Preview = ({changePreview, fields, name, avatar_url}) => {
             email: fields.email,
             facebook_profile: fields.facebook_profile
         }
+        console.log(temp);
         await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
-        /*if(fields.post_type === "lost"){
-            navigate(lost_feed_page);
-            //dispatch(changeDisplay(LOST));
-        }
-        else
-            navigate(found_feed_page);
-            //dispatch(changeDisplay(FOUND));
-         */
     };
     return (
         <div className="Preview">

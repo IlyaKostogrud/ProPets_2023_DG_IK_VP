@@ -1,37 +1,24 @@
-import React, {useState} from 'react';
-import {useSelector} from "react-redux";
+import React from 'react';
 import {
     activities_page,
-    //ADD_NEW,
     add_new_page,
     base_url,
-    //FAVORITES,
     favourites_page,
-    //FOSTERING,
     fostering_page,
-    //FOUND,
     found_feed_page,
-    //FOUND_FORM,
-    found_form_page, home_page,
-    //HOTELS,
+    found_form_page, FOUND_HEADER1, home_page,
     hotels_page,
-    //LOST,
     lost_feed_page,
-    //LOST_FORM,
-    lost_form_page, preview_page,
-    //PROFILE,
+    lost_form_page, LOST_HEADER1, preview_page,
     profile_page,
-    //VET_HELP,
     vet_help_page,
-    //WALKING,
     walking_page
 } from "../utils/constants";
 import Favorites from "./Favorites";
 import HomeServices from "./HomeServices";
 import AddNew from "./AddNew";
 import Profile from "./Profile";
-import LostFillingForm from "./LostFillingForm";
-import FoundFillingForm from "./FoundFillingForm";
+import LostFoundFillingForm from "./LostFoundFillingForm";
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import WelcomePage from "./WelcomePage";
@@ -41,13 +28,15 @@ import Activities from "./Activities";
 
 const Feeds = () => {
     //const [preview, setPreview] = useState(false);
-    return(
+    return (
         <Routes>//localhost:3000, //localhost:3000/#
             {/*<Route path={base_url} element={<WelcomePage/>}/>*/}
             <Route path={lost_feed_page} element={<LostFoundFeed title={'Lost'} list_type={'lost'}/>}/>
-            <Route path={lost_form_page} element={<LostFillingForm/>}/>
+            <Route path={lost_form_page}
+                   element={<LostFoundFillingForm p_type={'lost'} header_text={LOST_HEADER1}/>}/>
             <Route path={found_feed_page} element={<LostFoundFeed title={'Found'} list_type={'found'}/>}/>
-            <Route path={found_form_page} element={<FoundFillingForm/>}/>
+            <Route path={found_form_page}
+                   element={<LostFoundFillingForm p_type={'found'} header_text={FOUND_HEADER1}/>}/>
             <Route path={hotels_page} element={<HomeServices title={'Hotels'} list_type={'hotels'}/>}/>
             <Route path={walking_page} element={<HomeServices title={'Walking'} list_type={'walking'}/>}/>
             <Route path={fostering_page} element={<HomeServices title={'Fostering'} list_type={'fostering'}/>}/>
@@ -67,7 +56,7 @@ const Feeds = () => {
         case LOST:
             return <LostFeed/>
         case LOST_FORM:
-            return <LostFillingForm/>
+            return <LostFoundFillingForm/>
         case FOUND:
             return <FoundFeed/>
         case FOUND_FORM:

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import LostForm from "./LostForm";
+import LostFoundForm from "./LostFoundForm";
 import Preview from "./Preview";
 import {useSelector} from "react-redux";
 
-const LostFillingForm = () => {
+const LostFoundFillingForm = ({header_text, p_type}) => {
     const userInfo = useSelector(state => state.userInfo.user);
 
     const [type, setType] = useState("dog");
@@ -19,7 +19,7 @@ const LostFillingForm = () => {
     const [phone, setPhone] = useState(userInfo.tel_number);
     const [email, setEmail] = useState(userInfo.email);
     const [facebook_profile, setFacebook_profile] = useState(userInfo.fb_link);
-    const [post_type, setPost_type] = useState("lost");
+    const [post_type, setPost_type] = useState(p_type);
 
     const [preview, setPreview] = useState(false);
 
@@ -62,8 +62,8 @@ const LostFillingForm = () => {
 
     return preview ?
         <Preview changePreview={changePreview} fields={fields} name={userInfo.name} avatar_url={userInfo.avatar_url}/> :
-        <LostForm changePreview={changePreview} setters={setters} fields={fields} name={userInfo.name}
-                  avatar_url={userInfo.avatar_url}/>
+        <LostFoundForm changePreview={changePreview} header_text={header_text} setters={setters} fields={fields} name={userInfo.name}
+                       avatar_url={userInfo.avatar_url}/>
 };
 
-export default LostFillingForm;
+export default LostFoundFillingForm;
