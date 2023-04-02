@@ -1,8 +1,5 @@
 import React, {useState} from 'react';
 import {field_feed_array, HOME, home_page, id_mainFeed, lorem_ipsum, path_feedLF} from "../utils/constants";
-import profile from "../images/3b0045c9cc47b640ddcb43d6d06d1379.jpg";
-import upload from "../images/upload.png";
-import {drop, allowDrop} from "../utils/drag&drop";
 import {changeDisplay} from "../store/mainDisplaySlice";
 import {useDispatch, useSelector} from "react-redux";
 import {addInfo, uploadImage} from "../firebase/propets-service";
