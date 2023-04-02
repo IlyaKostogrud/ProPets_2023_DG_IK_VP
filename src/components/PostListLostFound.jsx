@@ -1,7 +1,7 @@
 import React from 'react';
 import PostItemLostFound from "./PostItemLostFound";
 
-const PostListLostFound = ({posts, title, list_type, favorites, updateFavorites}) => {
+const PostListLostFound = ({posts, title, list_type, favorites, updateState}) => {
     // const post = {
     //     post_date: Date.now(),
     //     post_id: Date.now(),
@@ -30,7 +30,7 @@ const PostListLostFound = ({posts, title, list_type, favorites, updateFavorites}
             <h2 style={{textAlign: 'center'}}>{title}</h2>
             {posts.map(post => {
                     if (post.post_type === list_type) // Here need to add a date check.
-                        return <PostItemLostFound post={post} posts={posts} favorites={favorites} updateFavorites={updateFavorites}
+                        return <PostItemLostFound post={post} posts={posts} favorites={favorites} updateState={updateState}
                                              key={post.post_id}/>
                     else return null
                 }

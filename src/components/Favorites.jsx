@@ -9,7 +9,7 @@ const Favorites = () => {
         loading: true
     })
 
-    const updateFavorites = (favorites) => {
+    const updateState = (favorites) => {
         setState(prevState => ({...prevState, favorites: favorites}));
     }
 
@@ -32,7 +32,7 @@ const Favorites = () => {
             <h2 style={{textAlign: 'center'}}>Favorites</h2>
             {state.posts.map(post => {
                 if (state.favorites.includes(post.post_id))
-                    return <PostItemHome post={post} favorites={state.favorites} updateFavorites={updateFavorites}
+                    return <PostItemHome post={post} favorites={state.favorites} updateState={updateState}
                                          key={post.post_id}/>
                 else
                     return null;

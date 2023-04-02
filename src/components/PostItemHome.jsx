@@ -36,8 +36,8 @@ const PostItemHome = (props) => {
         setState(prevState => ({...prevState, star: !temp}));
         const uid = sessionStorage.getItem('uid');
         if(temp){
-            const data = [props.favorites.filter((id)=> id !== props.post.post_id)];
-            props.updateFavorites(data);
+            const data = props.favorites.filter((id) => id !== props.post.post_id);
+            props.updateState(data,'favorites');
             await updateInfo(data,'favorites',uid,'fav_array');
         }
         else
@@ -53,7 +53,7 @@ const PostItemHome = (props) => {
                 <div className={'col-11'}>
                     <div>
                         {state.author_name}
-                        {state.user_owns && <DeleteButton posts={props.posts} post_id={props.post.post_id}/>}
+                        {state.user_owns && <DeleteButton updateState={props.updateState} posts={props.posts} post_id={props.post.post_id}/>}
                     </div>
                     <div className={'post_date'}>{date}</div>
                     <div className={'post-home-service-image-wrap'}>

@@ -54,7 +54,7 @@ const PostItemLostFound = (props) => {
                     <div className={'row pet-type-breed'}>
                         <h3>({props.post.post_type}) {props.post.type}, {props.post.breed}</h3>
                     </div>
-                    {state.user_owns && <DeleteButton posts={props.posts} post_id={props.post.post_id}/>}
+                    {state.user_owns && <DeleteButton updateState={props.updateState} posts={props.posts} post_id={props.post.post_id}/>}
                     <div className={'row'}>
                         <div className={'col-4'}>
                             <div>Color: {props.post.color}</div>
