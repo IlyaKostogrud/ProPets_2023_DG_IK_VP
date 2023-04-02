@@ -50,7 +50,7 @@ const PostItemHome = (props) => {
                 <div className={'col-11'}>
                     <div>{state.author_name}</div>
                     <div className={'post_date'}>{date}</div>
-                    <div className={'post-image'}>
+                    <div className={'post-home-service-image-wrap'}>
                         <img src={state.post_picture_url} alt={'post'}/>
                     </div>
                     <div>Text: {props.post.post_text}</div>
