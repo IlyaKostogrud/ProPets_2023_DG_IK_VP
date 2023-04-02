@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {changeDisplay} from "../store/mainDisplaySlice";
+//import {changeDisplay} from "../store/mainDisplaySlice";
 import {Link, /*useNavigate*/} from "react-router-dom";
 import {fetchNewAvatar, fetchUpdatedUser} from "../store/userInfoSlice";
 import {/*HOME,*/ home_page} from "../utils/constants";

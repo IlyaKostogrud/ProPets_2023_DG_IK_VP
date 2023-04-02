@@ -3,13 +3,18 @@ import {
     activities_page,
     add_new_page,
     base_url,
+    //base_url,
     favourites_page,
     fostering_page,
     found_feed_page,
-    found_form_page, FOUND_HEADER1, home_page,
+    found_form_page,
+    FOUND_HEADER1,
+    home_page,
     hotels_page,
     lost_feed_page,
-    lost_form_page, LOST_HEADER1, preview_page,
+    lost_form_page,
+    LOST_HEADER1,
+    preview_page,
     profile_page,
     vet_help_page,
     walking_page
@@ -21,9 +26,9 @@ import Profile from "./Profile";
 import LostFoundFillingForm from "./LostFoundFillingForm";
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
-import WelcomePage from "./WelcomePage";
+//import WelcomePage from "./WelcomePage";
 import LostFoundFeed from "./LostFoundFeed";
-import Preview from "./Preview";
+//import Preview from "./Preview";
 import Activities from "./Activities";
 
 const Feeds = () => {

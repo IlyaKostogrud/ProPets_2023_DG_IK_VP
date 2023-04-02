@@ -4,7 +4,8 @@ import {
     getAvatarURL,
     getDefaultAvatarURL,
     getInfo,
-    removeAvatar, updateField,
+    removeAvatar,
+    updateField,
     uploadImage
 } from "../firebase/propets-service";
 
