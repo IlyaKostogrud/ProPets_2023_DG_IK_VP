@@ -8,12 +8,14 @@ import {
     found_feed_page
 } from "../utils/constants";
 import {addInfo, uploadImage} from "../firebase/propets-service";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Preview = ({changePreview, fields, name, avatar_url}) => {
     const [checked, setChecked] = useState(true);
     const message = fields.post_type === "lost" ? messages[0] : messages[1]
     const link = fields.post_type === "lost" ? lost_feed_page : found_feed_page
+
+    const navigate = useNavigate();
 
     const clickPublish = async () => {
         if (document.getElementById("fb").checked === true) {
@@ -40,10 +42,11 @@ const Preview = ({changePreview, fields, name, avatar_url}) => {
             phone: fields.phone,
             email: fields.email,
             facebook_profile: fields.facebook_profile
-        }
-        console.log(temp);
+        };
         await addInfo(temp, path_feedLF, id_mainFeed, field_feed_array);
+        navigate(link);
     };
+
     return (
         <div className="Preview">
             <h2> Preview and Publish. Please share the post to your FB to be more effective.</h2>
@@ -69,9 +72,7 @@ const Preview = ({changePreview, fields, name, avatar_url}) => {
                 <input type="checkbox" id="fb" name="fb" defaultChecked={checked}
                        onChange={() => setChecked(!checked)}/>
                 <input type="button" value="Edit" onClick={() => changePreview()}/>
-                <Link to={link}>
-                    <input type="button" value="Publish" onClick={() => clickPublish()}/>
-                </Link>
+                <input type="button" value="Publish" onClick={clickPublish}/>
             </div>
             <p className="Fine_print">By clicking "Publish" you agree to us processing your information in accordance
                 with these terms</p>
