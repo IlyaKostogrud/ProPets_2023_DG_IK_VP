@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {
+    activities_page,
     //ADD_NEW,
     add_new_page,
     base_url,
@@ -36,6 +37,7 @@ import ErrorPage from "./ErrorPage";
 import WelcomePage from "./WelcomePage";
 import LostFoundFeed from "./LostFoundFeed";
 import Preview from "./Preview";
+import Activities from "./Activities";
 
 const Feeds = () => {
     //const [preview, setPreview] = useState(false);
@@ -54,6 +56,7 @@ const Feeds = () => {
             <Route path={add_new_page} element={<AddNew/>}/>
             <Route path={profile_page} element={<Profile/>}/>
             <Route path={home_page} element={<HomeServices title={'HomeServices Page'} list_type={'home'}/>}/>
+            <Route path={activities_page} element={<Activities/>}/>
             {/*<Route path={preview_page} element={<Preview changePreview={setPreview(false)} fields={null}/>}/>*/}
             <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>

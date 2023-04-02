@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    activities_page,
     //ADD_NEW,
     add_new_page,
     base_url,
@@ -21,15 +22,15 @@ import {
     vet_help_page,
     walking_page
 } from "../utils/constants";
-import {changeDisplay} from "../store/mainDisplaySlice";
-import {useDispatch, useSelector} from "react-redux";
+//import {changeDisplay} from "../store/mainDisplaySlice";
+//import {useDispatch, useSelector} from "react-redux";
 import {Link, Route, Routes} from "react-router-dom";
-import HomeServices from "./HomeServices";
-import LostFeed from "./LostFeed";
+//import HomeServices from "./HomeServices";
+//import LostFeed from "./LostFeed";
 
 const HeaderButtons = ({handleClickProceed}) => {
-    const {display} = useSelector(state => state.mainDisplay);
-    const dispatch = useDispatch();
+    //const {display} = useSelector(state => state.mainDisplay);
+    //const dispatch = useDispatch();
 
     const handleClickSignIn = () => {
         handleClickProceed(true);
@@ -41,7 +42,7 @@ const HeaderButtons = ({handleClickProceed}) => {
                     <button onClick={handleClickSignIn}>Sign In</button>
                 </Link>
             }/>
-            {[add_new_page,lost_form_page,found_form_page,preview_page,profile_page].map(path=><Route path={path} key={path} element={null}/>)}
+            {[add_new_page,lost_form_page,found_form_page,preview_page,profile_page,activities_page].map(path=><Route path={path} key={path} element={null}/>)}
             {[home_page, hotels_page,walking_page,fostering_page,vet_help_page,favourites_page].map(path=>
             <Route path={path} key={path} element={
                 <Link to={add_new_page}>
