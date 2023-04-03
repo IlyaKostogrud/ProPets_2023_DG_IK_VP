@@ -83,18 +83,6 @@ const userInfoSlice = createSlice({
             state.user.avatar_url = action.payload;
         },
     },
-    // extraReducers: {
-    //     [fetchUser.pending]: (state) => {
-    //         state.status = 'loading';
-    //         state.error = null;
-    //     },
-    //     [fetchUpdatedUser.pending]: (state) => {
-    //         state.status = 'loading';
-    //         state.error = null;
-    //     },
-    //     [fetchUser.rejected]: setError,
-    //     [fetchUpdatedUser.rejected]: setError
-    // }
     extraReducers: builder => {
         builder.addCase(fetchUser.pending, setLoading);
         builder.addCase(fetchUpdatedUser.pending, setLoading);
