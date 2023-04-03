@@ -37,7 +37,7 @@ const PostItemLostFound = (props) => {
         const uid = sessionStorage.getItem('uid');
         if (temp) {
             const data = [props.favorites.filter((id) => id !== props.post.post_id)];
-            props.updateFavorites(data);
+            props.updateState(data);
             await updateInfo(data, 'favorites', uid, 'fav_array');
         } else
             await addInfo(props.post.post_id, 'favorites', uid, 'fav_array');
