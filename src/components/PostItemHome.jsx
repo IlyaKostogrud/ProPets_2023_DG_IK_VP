@@ -35,13 +35,12 @@ const PostItemHome = (props) => {
         const temp = state.star;
         setState(prevState => ({...prevState, star: !temp}));
         const uid = sessionStorage.getItem('uid');
-        if(temp){
-            const data = [props.favorites.filter((id)=> id !== props.post.post_id)];
-            props.updateFavorites(data);
-            await updateInfo(data,'favorites',uid,'fav_array');
-        }
-        else
-            await addInfo(props.post.post_id,'favorites',uid,'fav_array');
+        if (temp) {
+            const data = props.favorites.filter((id) => id !== props.post.post_id);
+            props.updateState(data, 'favorites');
+            await updateInfo(data, 'favorites', uid, 'fav_array');
+        } else
+            await addInfo(props.post.post_id, 'favorites', uid, 'fav_array');
     };
 
     return (
@@ -52,18 +51,22 @@ const PostItemHome = (props) => {
                 </div>
                 <div className={'col-11'}>
                     <div>
-                        {state.author_name}
-                        {state.user_owns && <DeleteButton posts={props.posts} post_id={props.post.post_id}/>}
+                        <h5><span className={'colored-text'}>{state.author_name}</span></h5>
+
                     </div>
                     <div className={'post_date'}>{date}</div>
                     <div className={'post-home-service-image-wrap'}>
                         <img src={state.post_picture_url} alt={'post'}/>
                     </div>
-                    <div>Text: {props.post.post_text}</div>
+                    <div><span className={'colored-text'}>Text: </span>{props.post.post_text}</div>
                 </div>
+            </div>
+            <div className={'row'}>
                 <div className="favorite-star">
                     <span onClick={handleOnClickStar}>{state.star ? '★' : '☆'}</span>
                 </div>
+                <div>{state.user_owns && <DeleteButton updateState={props.updateState} posts={props.posts}
+                                                       post_id={props.post.post_id}/>}</div>
             </div>
         </div>
     );

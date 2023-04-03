@@ -100,7 +100,7 @@ const AddNew = () => {
                     <div className={'col-2'}>
                         <img className={'author_avatar'} src={userInfo.avatar_url} alt={'Profile avatar'}/>
                     </div>
-                    <div className={'col-8'}>{userInfo.name}</div>
+                    <h5 className={'col-8'}><span className={'colored-text'}>{userInfo.name}</span></h5>
                     <div className={'col-2'}>
                             <button type="button" onClick={clickPublish}>Publish</button>
                     </div>

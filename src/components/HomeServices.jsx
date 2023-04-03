@@ -9,15 +9,15 @@ const HomeServices = ({title, list_type}) => {
         loading: true
     })
 
-    const updateFavorites = (favorites) => {
-        setState(prevState => ({...prevState, favorites: favorites}));
+    const updateState = (data, field) => {
+        setState(prevState => ({...prevState, [field]: data}));
     }
 
     useEffect(() => {
         (async function () {
             const uid = sessionStorage.getItem('uid');
-            const {feed_array} = await getInfo('feedLF', 'mainFeed','feed_array');
-            const {fav_array} = await getInfo('favorites', uid,'fav_array');
+            const {feed_array} = await getInfo('feedLF', 'mainFeed', 'feed_array');
+            const {fav_array} = await getInfo('favorites', uid, 'fav_array');
             setState({
                 posts: feed_array.reverse(),
                 favorites: fav_array,
@@ -29,7 +29,8 @@ const HomeServices = ({title, list_type}) => {
 
     return (state.loading ||
         <div>
-            <PostListHome posts={state.posts} favorites={state.favorites} updateFavorites={updateFavorites} title={title} list_type={list_type}/>
+            <PostListHome posts={state.posts} favorites={state.favorites} updateState={updateState} title={title}
+                          list_type={list_type}/>
         </div>
     );
 };
