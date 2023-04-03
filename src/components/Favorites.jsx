@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getInfo} from "../firebase/propets-service";
 import PostItemHome from "./PostItemHome";
+import PostItemLostFound from "./PostItemLostFound";
 
 const Favorites = () => {
     const [state, setState] = useState({
@@ -32,10 +33,14 @@ const Favorites = () => {
             <h2 style={{textAlign: 'center'}}>Favorites</h2>
             {state.posts.map(post => {
                 if (state.favorites.includes(post.post_id))
-                    return <PostItemHome post={post} favorites={state.favorites} updateState={updateState}
-                                         key={post.post_id}/>
-                else
-                    return null;
+                    if (post.post_type === 'lost' || post.post_type === 'found')
+                        return <PostItemLostFound post={post} posts={state.posts} favorites={state.favorites}
+                                                  updateState={updateState}
+                                                  key={post.post_id}/>
+                    else return <PostItemHome post={post} posts={state.posts} favorites={state.favorites}
+                                              updateState={updateState}
+                                              key={post.post_id}/>
+                else return null;
             })}
         </div>
     );
