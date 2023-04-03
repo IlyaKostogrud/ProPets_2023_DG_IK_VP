@@ -50,7 +50,7 @@ const Feeds = () => {
             <Route path={add_new_page} element={<AddNew/>}/>
             <Route path={profile_page} element={<Profile/>}/>
             <Route path={home_page} element={<HomeServices title={'HomeServices Page'} list_type={'home'}/>}/>
-            <Route path={activities_page} element={<Activities/>}/>
+            <Route path={activities_page} element={<Activities title={'Activities'}/>}/>
             {/*<Route path={preview_page} element={<Preview changePreview={setPreview(false)} fields={null}/>}/>*/}
             <Route path={'*'} element={<ErrorPage/>}/>
         </Routes>
