@@ -7,11 +7,11 @@ const HomeServices = ({title, list_type}) => {
         posts: [],
         favorites: [],
         loading: true
-    })
+    });
 
     const updateState = (data, field) => {
         setState(prevState => ({...prevState, [field]: data}));
-    }
+    };
 
     useEffect(() => {
         (async function () {

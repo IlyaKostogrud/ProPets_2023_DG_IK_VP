@@ -4,9 +4,11 @@ import {updateInfo} from "../firebase/propets-service";
 const DeleteButton = ({posts, post_id, updateState}) => {
 
     const handleOnClick = async() => {
-        const data = posts.filter((post) => post.post_id !== post_id);
-        await updateState(data,'posts');
-        await updateInfo(data.reverse(),'feedLF','mainFeed','feed_array');
+        const temp = [...posts];
+        const filtered = temp.filter((post) => post.post_id !== post_id);
+        updateState(filtered,'posts');
+        const to_send = [...filtered];
+        await updateInfo(to_send.reverse(),'feedLF','mainFeed','feed_array');
     };
 
     return (
