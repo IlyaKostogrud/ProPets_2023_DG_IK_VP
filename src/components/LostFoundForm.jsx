@@ -79,13 +79,14 @@ const LostFoundForm = ({setters, fields, changePreview, name, avatar_url, header
                         <div className="Drag&drop">
                             {/*<img src={upload} alt="upload"/>*/}
                             {/*<p>Drag and drop photos or</p>*/}
-                            <input accept="image/*" multiple type="file" name="Browse[]" id="file" onChange={
+                            <input accept="image/*" type="file" name="Browse[]" id="file" onChange={
                                 (e) => {
                                     document.getElementById("upload_list").value += e.target.files[0].name + "\n"
                                     setters.setPhoto(e.target.files[0])
                                 }
                             }/>
-                            {/*<textarea id="upload_list"/>*/}
+
+                            <textarea id="upload_list" style={{display:'none'}}/>
                         </div>
                     </div>
                 </div>
