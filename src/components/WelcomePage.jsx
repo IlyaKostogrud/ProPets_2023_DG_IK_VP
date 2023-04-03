@@ -42,7 +42,7 @@ const WelcomePage = () => {
             </div>
             <div className={'row'}>
                 <div className={'col welcome-page-wrap-menu'}>
-                    <p>Welcome to your <span className={'pawfessional'}>pawfessional</span> community</p>
+                    <p>Welcome to your <span className={'colored-text'}>pawfessional</span> community</p>
                     <WelcomeButtons handleClickProceed={handleClickProceed}/>
                 </div>
                 <div className={'col welcome-page-wrap-img1'}>

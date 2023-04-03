@@ -51,29 +51,30 @@ const PostItemLostFound = (props) => {
                 </div>
 
                 <div className={'col-7 container'}>
-                    <div className={'row pet-type-breed'}>
+                    <div className={'row pet-type-breed colored-text'}>
                         <h3>({props.post.post_type}) {props.post.type}, {props.post.breed}</h3>
                     </div>
-                    {state.user_owns && <DeleteButton updateState={props.updateState} posts={props.posts} post_id={props.post.post_id}/>}
                     <div className={'row'}>
                         <div className={'col-4'}>
-                            <div>Color: {props.post.color}</div>
-                            <div>Sex: {props.post.sex}</div>
-                            <div>Height: {props.post.height}</div>
+                            <div><span className={'colored-text'}>Color: </span>{props.post.color}</div>
+                            <div><span className={'colored-text'}>Sex: </span>{props.post.sex}</div>
+                            <div><span className={'colored-text'}>Height: </span>{props.post.height}</div>
                         </div>
                         <div className={'col-8'}>
-                            <p>Distinctive features: {props.post.distinctive_features}</p>
+                            <p><span
+                                className={'colored-text'}>Distinctive features: </span>{props.post.distinctive_features}
+                            </p>
                         </div>
                     </div>
 
                     <br/>
 
                     <div className={'row'}>
-                        <p>Description: {props.post.description}</p>
+                        <p><span className={'colored-text'}>Description: </span>{props.post.description}</p>
                     </div>
 
                     <div className={'row'}>
-                        <p>Location: {props.post.location}</p>
+                        <p><span className={'colored-text'}>Location: </span>{props.post.location}</p>
                     </div>
 
                     <div className={'row post_date'}>
@@ -85,19 +86,22 @@ const PostItemLostFound = (props) => {
                             <div className={'post-author-avatar'}>
                                 <img className={'author_avatar'} src={state.picture_url} alt="post_author_avatar_url"/>
                             </div>
-                            <p>{state.author_name}</p>
+                            <h5>{state.author_name}</h5>
                         </div>
                         <div className={'col-7 author-contacts'}>
-                            <div>Phone: {props.post.phone}</div>
-                            <div>E-mail: {props.post.email}</div>
-                            <div>Facebook: {props.post.facebook_profile}</div>
+                            <div><span className={'colored-text'}>Phone: </span>{props.post.phone}</div>
+                            <div><span className={'colored-text'}>E-mail: </span>{props.post.email}</div>
+                            <div><span className={'colored-text'}>Facebook: </span>{props.post.facebook_profile}</div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div className={'row'}>
                 <div className="favorite-star">
                     <span onClick={handleOnClickStar}>{state.star ? '★' : '☆'}</span>
                 </div>
+                <div>{state.user_owns && <DeleteButton updateState={props.updateState} posts={props.posts}
+                                                       post_id={props.post.post_id}/>}</div>
             </div>
         </div>
     );
