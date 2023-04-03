@@ -24,10 +24,11 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
 
     const handleClickSubmit = async () => {
         setState({loading: true, failure: false});
+        error_message = '';
         const response = login ? await loginFBase(email, password) :
             await registration_init(name, email, password, passwordCheck);
 
-        if (state.failure || isResponseWithError(response)) return;
+        if (error_message || isResponseWithError(response)) return;
 
         const uid = await getUid();
         sessionStorage.setItem('uid', uid);
@@ -103,6 +104,9 @@ const LoginRegistrationForm = ({changeCondition, whatToRenderNext}) => {
                 {state.failure && <div>
                     <p className={'error-p'}>{`${error_message}`}</p>
                 </div>}
+                {state.loading && <div><p>
+                    Loading...
+                </p></div>}
             </form>
             <div className={'login-registration-buttons'}>
                 <button disabled={state.loading} onClick={() => changeCondition()}>Cancel</button>
