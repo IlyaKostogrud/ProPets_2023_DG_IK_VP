@@ -212,3 +212,18 @@ button {
 /*    align-items: center;*/
 /*    justify-content: center;*/
 /*}*/
+
+.lost-found-labels>div>label{
+    width: 30%;
+}
+
+.lost-found-labels>div>textarea{
+    width: 65%;
+}
+
+.lost-found-labels>div>select{
+    width: 65%;
+}
+.lost-found-labels>div>input{
+    width: 65%;
+}
