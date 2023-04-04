@@ -20,7 +20,7 @@ const LostFoundForm = ({setters, fields, changePreview, name, avatar_url, header
             <h2>{header_text}</h2>
             <form className="form_main container">
                 <div className={'row'}>
-                    <div className={'col-7'}>
+                    <div className={'col-7 lost-found-labels'}>
                         <div><label htmlFor="type">Type:</label>
                             <select value={fields.type} name="type" id="type" onChange={(e) => setters.setType(e.target.value)}>
                                 <option value="dog">Dog</option>
